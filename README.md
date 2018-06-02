@@ -22,5 +22,5 @@ These sub-sections are decided on the basis of latest requirements in current So
 #### Note
 * New detailed preperation topics will be added for each sub-section.
 * Flash-cards for each sub-section will be added.
-
+* Url of resources will soon be added with descriptive analysis of topics.
 ---
