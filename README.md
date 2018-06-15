@@ -27,7 +27,8 @@ All the specified projects must be prepared with in-depth analysis. Prepare a ta
 These sub-sections are decided on the basis of latest requirements in current Software Developer interviews with few new topics added which are equally important when it comes to technical interview along with standard conventional topics.  
 
 * __Languages to work With__ : Java, C/C++ and Python. Memory management and advantages of using each language with common Collections, libraries used in that language.
-* __Data Structures__ : Inner workings of data-structures with common complexities involved in it. Application specific usage of these data structures.
+* __Data Structures__ : Inner workings of data-structures with common complexities involved in it. Application specific usage of these data structures.  
+- [ ] [Big-O](Big-O/README.md) 
 * __Algorithms__ : Different paradigms and standard text-book algorithms will come in handy. Runtimes, limitations, classes & other detailed information is required. No pseudocodes, with each algorithm learned coding & different implementations related to it must also be understood.
 * __System Design__ : Basic OO-design, scalable implementations, design choices. Distributed designs, service-oriented architectures, map-reduce, distributed caching, load balancing.
 * __OS__ : All the basics of operating systems with memory management, processes, threads, synchronization, paging, and multithreading as a must.
