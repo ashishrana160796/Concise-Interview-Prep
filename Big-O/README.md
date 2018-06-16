@@ -2,7 +2,6 @@
 
 #### Big-O is equivalent to Big-Theta in general interview terms
 
-
 ---
 
 * Firstly, study upper-bound(Big-O), lower-bound(Big-Omega) & Intersection Concept( Big-Theta).
@@ -10,7 +9,7 @@
 * Amortized Analysis : total expense per operation evaluated for sequence of steps.
 * Ignore constants & non-dominant terms.
 * Binary Search performs better then ternary search (O(log2n) vs O(log3n)).
-* Recursive Runtimes : This can be solved with general formula, branches^depth. 
+* Recursive Runtimes : This can be solved with general formula, branches^depth.
 
 ---
 
@@ -35,11 +34,11 @@
 int sum(Node n){
   if(node == null)
     return 0;
-  return sum(n.left) + n.value + sum(n.right);  
+  return sum(n.left) + n.value + sum(n.right);
 }
 ```
 
-* Permutations of a String 
+* Permutations of a String
 ```
 void perm(String s){
   perm(s,"");
@@ -52,7 +51,7 @@ void perm(String s, String pre){
     for(int i=0;i<s.length();i++){
       String rem = s.substring(0,i)+s.substring(i+1);
       perm(rem, pre+s.charAt(i));
-    }   
+    }
   }
 }
 ```
