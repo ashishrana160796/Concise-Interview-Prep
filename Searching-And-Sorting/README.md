@@ -78,8 +78,98 @@ Slow alogirthm for reverse sorted data.
   for i  to d
     count-sort of digit i
   ```
+* Merge Sort : Worst & Average Case Complexity O(nlogn), in-place & out-place both implementations exist, divide & conquer algorithm and can be parallelized, stable sorting algorithm.  
+  
+  Complexity Analysis T(n):  
+  Divide : O(1)  
+  Conquer : 2*T(n/2), into two sub-problems.  
+  Combine : O(n), merging elements.  
+  T(n) = 2T(n/2) + O(n) if n > 1  
+  Using Master Th. Case 2.  
+  T(n) = O(nlogn)  
+  
+  Algorithm :  
+  ```
+  mergeSort(A,p,r)  // like in dfs it goes in-depth
+  if p < r
+    then q <- floor((p+r)/2)
+      mergeSort(A,p,q)
+      mergeSort(A,q+1,r)
+      merge(A,p,q,r)
+  
+  merge(A,p,q,r)
+  n1 <- q-p+1
+  n2 <- r-q
+  
+  int L[] = new int[n1];
+  int R[] = new int[n2];
+  
+  for(int i=0;i<n1;i++)
+    L[i] = a[p+i];
+  
+  for(int i=0;i<n2;i++)
+    R[i] = a[r+1+i];
+  
+  i,j <- 0
+  
+  // Initial index of merged subarry array
+  
+  int k = l; // Important assignment - k must be lowe limit of array initiated
+  while (i < n1 && j < n2)
+    if (L[i] <= R[j])
+      arr[k] = L[i];
+      i++;
+    else
+      arr[k] = R[j];
+      j++;
+    k++;
+ 
+   /* Copy remaining elements of L[] if any */
+   while (i < n1)
+    arr[k] = L[i];
+    i++;
+    k++;
+    
+   /* Copy remaining elements of R[] if any */
+   while (j < n2)
+    arr[k] = R[j];
+    j++;
+    k++;
+    
+  ```
+
+* Quick Sort : Not a stable sort but in-place sort, Naive implmentation average case O(nlogn) & worst case(n^2). 
+  Partition method : rearranges the array such that a[left] <= a[right] and return pivot index element.  
+  
+  Complexity Analysis :  
+  Worst Case : T(n) = T(n-1) + O(n) => T(n) = O(n^2)  
+  Best Case : T(n) = 2*T(n/2) + O(n) => T(n) = O(n*logn)  
+  
+  Two Solution to avoid worst case :  
+  * Randomize input array.  
+  * Pick random pivot element.  
+  
+  Algorithm :
+  ```
+  quickSort(A,p,r)
+    if(p<r)
+      q = parition(A,p,r)
+      quickSort(A,p,q)
+      quickSort(A,q+1,r)
+  
+  
+  parition(A,p,r)
+  x <- A[r]
+  i <- p-1
+  for j<-p to r-1
+    if A[j] <= A[x]
+      i++
+      swap A[i] <=> A[j]
+  swap A[i] <=> A[r]
+  return i+1
+  ```
   
 ---
-__Note__
-* Algorithms implementation will be added soon. 
-* Merge, Quick and Heap Sort pending with fibonacci heap analysis.
+## Implemented Sorting Codes
+
+* [Cocktail Sort](Sorting-Algorithms/CocktailSort.java)
