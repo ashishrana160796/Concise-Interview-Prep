@@ -63,11 +63,102 @@ detailed structure :
   * Port Address : 16-bit port number represented as single number. Port number also remains same.
   * Application Specific Address : emails & urls are example.
 
----
-
 
 ---
-Chapter 32 : Security On Internet
+
+### Chapter 25 : DNS
+
+* DNS servers return the IP address of the Web server associated with that name.
+* Unambigous namespace is constructed with complete control over binding name to IP addresses. Domain Name Space was designed in an inverted tree form 0( root ) to level 127. FQ( Fully qualified )DN terminates with null string where as PQ( Partially Qualified )DN.
+* Distribution of DNS information to be stored. 
+  * Primary server loads all information from disk. Secondary server loads all information from primary server, & is called zone transfer.
+* A DNS zone is any distinct, contiguous portion of the domain name space in the Domain Name System (DNS) for which administrative responsibility has been delegated to a single manager.  
+* DNS protocol is divided into three different sections : generic, country & inverse domain. 
+  * generic : edu, com, biz, coop, int etc.
+  * country : us, pk, uk etc.
+  * The inverse domain finds a domain name for a given IP address. This is called address-to-name resolution.
+* Mapping a name to an address or an address to a name is called name-address resolution. Two types recursive & iterative in nature.
+* Query & Response, DNS messages : Query message consists of header & question records. Response messages consist of header, question records, answer records, authoritative records & additional records.
+* Header identification( questions, authoritative records ) & flags( number of answer records & additional records ).
+* A registrar, a commercial entity accredited by ICANN( International Corporation for Assigned Names & Numbers ) can add new domain into DNS.
+* DDNS dynamically updates DNS master file. Binding b/w name & address is to be determined request is sent by
+DHCP( Dynamic Host Configuration Protocol, dynamically assigns an IP address ) to primary DNS server. Primary server updates the zones & secondary server are notified actively or passively.
+* DNS can use UDP(<512 bytes) or TCP with port number 53.
+---
+### Chapter 27 : WWW & HTTP
+
+* www : is a service of client/server which a client with browser can access anywhere with server. Service is distributed over many locations called site.
+* Url's structure : Protocol :// Host : Port / Path
+* Port Numbers : HTTP(80), HTTPS(443), SMTP(25), DNS(53)
+* Web documents can be classified into static, dynamic, active base on when the contents of documents are determined.
+  * Static html tags are coded into html documents.
+  * Dynamic documents are sometimes referred to as server-site dynamic documents. Operational program sits on server which attaches dynamic scripts inside html for customizations.
+  * Active documents are sometimes referred to as client-site dynamic documents. These can be in the form of applets returned by server or JS scripts being requested.
+* HTTP functions as a combination of FTP & SMTP. HTTP uses services of TCP at port number 80.
+
+| Request Message | Response Message |
+| --------------- | --------------- |
+| Request Line | Status line |
+| Headers | Headers |
+| Blank Line | Blank Line |
+| Body | Body |
+
+* Structure of Request & Status line as follow :
+```
+REQUEST LINE
+Request Type (Space) URL (Space) HTTP version
+
+STATUS LINE
+HTTP version (Space) Status Code (Space) Status phrase
+```
+
+* Different method in Http including GET & POST in detail.
+
+| Method Name | Action |
+| --- | --- |
+| GET | Request document from server. |
+| HEAD | Request information about the document. |
+| POST | Sends information from client to server. |
+| PUT | Sends document from server to client. |
+| TRACE | Echoes the incoming request. |
+| CONNECT | Reserved. |
+| OPTION | Inquires about available options. |
+
+* Important HTTP status codes : Informations(100s), Success(200s), Redirection(300s), Client Error(400s), Server Errors(500s)  
+
+| Code | Phrase | Description |
+| --- | --- | --- |
+| 100 | Continue | Initial request received, client continue with its request. |
+| 101 | Switching | Server complying with client to switch protocols in upgrade header. |
+| 200 | OK | request is successful. |
+| 201 | Created | new url created. |
+| 202 | Accepted | Request accepted, but not acted upon. |
+| 204 | No content | No content in body. |
+| 301 | Moved permanently | url moved by server permanently. |
+| 302 | Moved temporarily | The url is moved temporarily. |
+| 304 | Not modified | Document has not been modified. |
+| 400 | Bad Request | Syntax error. |
+| 401 | Unauthorized | lacks authorization. |
+| 403 | Forbidden | Service denied. |
+| 404 | Not Found | document not found. |
+| 405 | Method not allowed | Method not supported in url. |
+| 406 | Not acceptable | format request not acceptable. |
+| 500 | Internal Server Error | error like crash. |
+| 501 | Not implemented | action cannot be performed. |
+| 503 | Service Unavailable | Not available for now. |
+
+* Header format( Header name: (Space) Header value ) : Types of headers General, Request, Response, Entity. 
+```
+General :   Cache-control, Connection, Date, MIME, Upgrade.
+Request : Accept - ( _ , charset, encoding, language), Aurthorization, From, Host, If- (modified-since, match, non-match, range, unmodified-since)
+Response : Accept range, age, public, Retry-after, Server
+Entity : Allow, Content -(encoding, language, length, range, type), 
+```
+
+* HTTP version 1.1 specifies a persistent connection by default.
+
+---
+### Chapter 32 : Security On Internet
 
 * Structure Of Security Protocol
 ```
