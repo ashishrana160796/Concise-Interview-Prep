@@ -5,7 +5,7 @@
 Refer pptx/book of chapter along with it, to understand in detail. Networking is huge in scope try to limit it & focus on revisions.
 
 ---
-### Chapter 1 : Inrtoduction
+### Chapter 1 : Introduction
 
 * Dataflows : Simplex, Half-Duplex, Full-Duplex
 * Types Of Connection : P-2-P, Multipoint
@@ -63,6 +63,70 @@ detailed structure :
   * Port Address : 16-bit port number represented as single number. Port number also remains same.
   * Application Specific Address : emails & urls are example.
 
+---
+
+
+---
+Chapter 32 : Security On Internet
+
+* Structure Of Security Protocol
+```
+Header Of Security Protocol
+--------------------------- |
+Payload(from IP, TCP, SMTP) |
+--------------------------- | Encrypted
+            MAC             |
+--------------------------- |
+Trailer Of Security Protocol 
+```
+
+* IPSec : IPSecurity a protocol designed by IETF for packet security at network level.
+  * Two modes of operation : Transport Mode it only protects transport layer payload not ip-header. But, in tunnel mode it protects both Payload+IP-header. Attaches header & trailer of its own.
+  * In Transport Mode IPSec layer is b/w transport & network layer. But, in tunnel mode it is in between only Network layer.  
+  * Authenticiation header(4-byte) in transport mode provides source of authenticiation, data integrity, but not privacy.
+  *  ESP(Encapsulationg security header) header & trailer provides source authenticiation, data integrity, & privacy. It has advantage of providing Confidentiality over AH. It provides encryption of DES address but not in AH.
+  *  IKE(Internet Key Exchange) provides SAs( Security Associations : agreement on how they will use security services) for IPSec. 
+    * ISAKMP( Internet Security Association & Key Management Protocol) : Oakley & SKEME  
+
+| Prefix | Range | Total |
+| ------------- | ------------- | ------------- |
+| 10/8 | 10.0.0.0 to 10.255.255.255 | 2^24 |
+| 172.16/12 | 172.16.0.0 to 172.31.255.255 | 2^20 |
+| 192.168/16 | 192.168.0.0 to 192.168.255.255 | 2^16 |
+
+#### Important Topics
+
+* SSL(Secure Socket Layer) & TLS(Transport Layer Security). Later is IETF version of former. It works at transport layer.
+```
+Cipher suite for SSL : SSL_( Key Exchange Algorithm )_WITH_( Encryption Algorithm )_( Hash Algorithm )
+
+KEA :   NULL, RSA( cryptosystem ), DH_anon, DHE_RSA, DHE_DSS, DH_RSA, DH_DSS, FORTEZZA_DMS
+EA : NULL, RC4_128, IDEA_CBC, DES_CBC, 3DES_EDE_CBC, FORTEZZA_CBC
+HA : MD5( 128-bit hash value ), SHA-1( 160-bit hash value )
+```
+* Client & Server have six different cryptographic secrets. Authenticiation, encryption & Initiation vector for client & server.
+* Four SSL protocols Hanshake, ChangeCipherProtocol, Alert, Record protocol.
+```
+Handshake protocol : Security establish -> Server auth. & key exchange -> Client auth. & key exchange -> Finalize
+```
+
+```
+Record Protocol : SSL payload is encrypted except header. Compression & Encryption process is involved.
+
+```
+
+* PGP( Pretty Good Privacy) : It is created to give authenciated & confidential emails. Operates at application layer. Sender will include identifier of algorithms in message as well as values of keys.   
+  * Security at application layer.
+  * Here, there can be multiple paths from fully or partially trusted authorities to any subject.
+
+```
+PGP Message = Header + [[Email Message][Hash Algo + Public key Algo( for Session key encryption)+ Private key Of Sender(+ Encrypted Digest) ]] + [Public Key Algo( encrypt digest ) + Symmetric-key algorithm Identification]
+```
+
+* Firewalls : A firewall is a device installed between the internal network of an organization and the rest of the Internet. It is designed to forward some packets and filter (not forward) others.
+  * A packet-filter firewall filters at the network or transport layer.
+  * A proxy firewall filters at the application layer. From HTTP prcoy to HTTP Server accepted packets are floated.
+  
 ---
 Note :
 * Don't refer multiple sources for these topics. Vast resources available, Study Smart to give equivalent time to other easy subjects.
