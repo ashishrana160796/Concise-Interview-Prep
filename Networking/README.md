@@ -65,6 +65,19 @@ detailed structure :
 
 ---
 
+### Chapter 9 : Introduction to Data Link Layer with 5th Edition
+
+* Data link layer decides to which capacity the medium is needed to be used either part of it( point-to-point ) or complete of it( broadcast ). Data link Control( DLC ) & Media Access Control( MAC ) are two sublayers. 
+* Data link layer of a point-to-point link doesn't need MAC sublayer. 
+* IP address defines two end points from source to destination but it doesn't define which link the packet should pass through.
+* Address Types defined by link-layers :
+  * Unicast( Common LAN address, the second digit needs to be odd number ) : A<b>3</b>:34:45:11:92:F1
+  * Multicast( Common LAN address, the second digit needs to be even number ) : A<b>2</b>:34:45:11:92:F1
+  * Broadcast( Common LAN address, all are ones ) : FF:FF:FF:FF:FF:FF
+* We need link-layer address of next node to move packet, IP address is source is there but next node's IP is not helpful. ARP( address resoultion protocol ) is needed, IP Add. -> ARP -> Link-Layer Address used for communication.
+* Packet travels with Dest. Link Layer Address |Source Link Layer Address | in front in the form of frame. In each node it gets unwrapped till network layer with the help of ARP proper IP-address of source are matched with Source IP address information coded into the packet.
+---
+
 ### Chapter 19 : IPv4 Addressing
 
 * IPv4 address 32-bit address that uniquely defines machine address over the internet.
