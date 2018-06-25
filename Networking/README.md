@@ -63,6 +63,29 @@ detailed structure :
   * Port Address : 16-bit port number represented as single number. Port number also remains same.
   * Application Specific Address : emails & urls are example.
 
+---
+
+### Chapter 19 : IPv4 Addressing
+
+* IPv4 address 32-bit address that uniquely defines machine address over the internet.
+* Few rules for writing IP-addresses no leading zeros, no more than four numbers, each number less than or equal to 255, binary notation & dotted-decimal notation not allowed.
+* Classes are divided into five and this addressing is known as classful addressing.
+```
+          First byte Second byte  Third Byte                    Number of blocks   Block Size   Application
+Class A   0                                     0-127           128                2^24         Unicast
+Class B   10         -----------                128-191         2^14               2^16         Unicast
+Class C   110        -----------  ----------    192-223         2^21               2^8          Unicast
+Class D   1110                                  224-239         1                  2^28         Multicast
+Class E   1111                                  240-255         1                  2^28         Reserved
+```
+* Classful addressing is replaced by classless addressing. It is known as Classless Inter-Domain Routing.
+* Default of masks of different classes A(/8), B(/16), C(/24). First address allocated must be divisible by 16 for a block IP-address allocated.
+* Let /n be the mask, first address can be calculated by making (32-n) rightmost bits to 0s. Last address is obtained by (32-n) rightmost bits to 1.
+* Number of addresses in a block can be found using 2^32-n. 
+* First address is not assigned to any device it usually represents organization to rest of the world.
+* Two level hierarchy in IP addresses one is network prefix n-bits & other righmost 32-n bits of host. In a three level hierarchy a subnet-prefix can also be added.
+* Network address translation (NAT) is mapping one IP address space into another by modifying network address information in the IP header of packets while they are in transit across a traffic routing device.
+* IPv6 addresses, Abbreviated form involves truncation of zeros to one zero & Most abbreviated form involves introduction of gaps instead of zeros. 32 hex number used to represent it.
 
 ---
 
