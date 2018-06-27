@@ -33,6 +33,8 @@ These sub-sections are decided on the basis of latest requirements in current So
 * __System Design__ : Basic OO-design, scalable implementations, design choices. Distributed designs, service-oriented architectures, map-reduce, distributed caching, load balancing.
 * __OS__ : All the basics of operating systems with memory management, processes, threads, synchronization, paging, and multithreading as a must.
 * __Networking__ : Basic network models, All the important protocols, basic practical numericals. Can be asked implement your own protocol.
+- [ ] [Networking](Networking/README.md)
+- [ ] [Interview-Questions](Networking/Interview-Questions/README.md)
 * __AI/ML__ : Basic search methods in AI, knowledge representation etc. All the basic models in ML with proper trade-offs. Learning functions/rates, activation functions etc. basic things.
 
 ---
