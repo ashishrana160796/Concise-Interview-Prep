@@ -32,6 +32,8 @@ These sub-sections are decided on the basis of latest requirements in current So
 * __Algorithms__ : Different paradigms and standard text-book algorithms will come in handy. Runtimes, limitations, classes & other detailed information is required. No pseudocodes, with each algorithm learned coding & different implementations related to it must also be understood.
 * __System Design__ : Basic OO-design, scalable implementations, design choices. Distributed designs, service-oriented architectures, map-reduce, distributed caching, load balancing.
 * __OS__ : All the basics of operating systems with memory management, processes, threads, synchronization, paging, and multithreading as a must.
+- [ ] [Operating-Systems](Operating-Systems/README.md)
+- [ ] [Interview-Questions](Operating-Systems/Interview-Questions/README.md)
 * __Networking__ : Basic network models, All the important protocols, basic practical numericals. Can be asked implement your own protocol.
 - [ ] [Networking](Networking/README.md)
 - [ ] [Interview-Questions](Networking/Interview-Questions/README.md)
