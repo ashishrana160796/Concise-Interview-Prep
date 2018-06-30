@@ -72,7 +72,67 @@ shared systems, for executing user programs & tasks.
   * Shared Messaging : Common variable & data.
   * Message Passing : Communication between two processes.
     * send(P, message), receive(Q, message) : Link establishment happens automatically, b/w each pair there is only one pair.
-    * 
+
+* UNIX style system calls & their functionalities :
+
+| System call | Description |
+| --- | --- |
+| fork | spawns child process & allocate parent's resources. |
+| exec | load's process data & instructions into address space. |
+| wait | causes the calling block to block resources until child process is terminated. |
+| signal | specifies signal handler a particular signal. |
+| exit | terminates calling process. |
+| nice |  modifies process's scheduling priority. |
+
+---
+
+### Threads & Programing Analysis
+
+* Threads are LW( Light weight )P, instructions/control, global info/shared address space. Also, register, stack, ,thread specific data and single masks are local to a thread. 
+* Threading models as follow :
+  * User-level threads : created by runtime libraries & cannot access kernel directly.
+    * Many to one mapping, single execution context threads are mapped to.
+    * Synchronization performed outside kernel, avoid context switches. Kernel views multithreaded  as single thread of control, cannot be used on mutliple processor at once.
+  * Kernel-level threads : maps each thread to its own context. Overhead is reduced by context switching but not optimal solution.
+  * Worker Threads( kernel threads that are persistent ) : New thread executed with worker thread. Improves performance where are created/destroyed oftenly.
+  * Synchronous : Occurs as a direct result of program execution. Where as, asynchronous event typically unrelated to current instruction.
+  * Multiple threads share same address space. Therefore, thread termination can cause serious problems.
+  * POSIX & PThreads : POSIX states that processor registers, stack and signal mask are maintained individually for each thread. POSIX API specifies how OS should signal Pthreads & in addition to specifying thread-cancellation modes.
+  * XP threads can creates fibres,  that creates it rather than scheduler. In XP process exist with thread pool, with number of worker threads, in which kernel threads execute function specified by user thread.
+
+#### Java Multithreading 
+```
+Created by class Thread( java.lang.Thread ). Execute code is specified in Runnable( java.lang.Runnable )'s object run method.
+
+public interface Runnable {
+  void run();
+}
+
+With Runnable's object : Create class which implements, Runnable object. Create object of thread & pass runnable object & start it. 
+
+RunnableThreadImplementor inst = new RunnableThreadImplementor();
+Thread th = new Thread();
+th.start();
+
+With Thread class : A class extends thread class, override run() method. 
+TheadExtender inst = new ThreadExtender();
+inst.start();
+
+Runnable's implementation is better as, java doesn't allow multiple inheritance. Class implementing Runnable interface will be able to extend another class. Thread class overload is excessive.
+```
+* __synchronized__ : keyword in java restricts multiple threads from executing the code simultaneously on the same object( i.e. same reference ).
+* __Static synchronized Methods__ : two threads (same class, diff. references) above cannot simultaneously execute synchronized static method on same class, even one is calling foo & other is calling bar.
+* __Synchronized Block__ : only one thread per instance can execute a synchronized block.
+* __Locks(java.util.concurrent.Lock)__ : Lock can be used to synchronize access to resource by associating the resource with the lock. with lock & unlock methods every problem can be handled simply.
+
+* Deadlock detection, when each thread is waiting for other to release resources :
+  * Mutual Exclusion : Only one process can access a resource at given time.
+  * Hold & Wait : Process holding a resource can request resources.
+  * No Preemption : No removal of processes.
+  * Circular Wait : Two processes comes into circular usage of resources.
+  
+---
+
 
 --- 
 #### References
