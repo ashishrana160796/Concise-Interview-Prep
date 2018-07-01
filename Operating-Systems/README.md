@@ -184,6 +184,27 @@ __Note :__ Must Practice numericals of Disk Scheduling Algorithms.
   * RAID level 0 + 1 : striped disks copied/mirroed to another disks.
   * RAID level 1 + 0 : set of mirrored data striped accross disks.
 
+---
+
+### CPU Scheduling Theory
+
+#### Note : Must practice numericals from CPU scheduling.
+
+* Based on multipgramming OS. CPU execution & I/O wait exist in Process Execution.
+* Different definitions related to time-scheduling :
+  * dispatch latency : time taken by dispatcher to stop one process & start another.
+  * Throughput : number of processes executed per unit time.
+  * Turnaround Time : time taken to execute a particular process.
+  * Waiting Time : The time for which the process is waiting in ready queue. Take average of all processes waiting to evaluate average waiting time of an algorithm.
+  * Response Time : Amount of time till which request was submitted & not single response has happened.
+* Scheduling algorithms :
+  * FCFS : First arrival time is served first. Average time of wait comes to be higher if shorter processes are behing long processes known as convoy effect.
+  * SJF( optimal, gives minimum average waiting time ) : Burst times are used to schedule the process, with minimum burst time scheduled first & updation of burst after execution also happens.
+    * Preemptive ( complete CPU burst is executed ) vs Non-Preemptive ( SRTF priority ).
+  * Priority Scheduling : Smaller integer, highest priority. Can be preemptive & non-preemtive. Priority Scheduling  lead to starvation & Aging.
+  * Round Robin : After each time quantam is preempted & a kept at the end of ready queue( all the processes that have arrived ). Large value of 'q' FIFO, 'q' small : must be large with respect to context switch otherwise overhead is too high. Complex numerical will have different arrival time.
+  
+---
 --- 
 #### References
 * Dietel OS book.
