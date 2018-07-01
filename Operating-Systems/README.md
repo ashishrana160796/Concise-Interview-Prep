@@ -203,8 +203,34 @@ __Note :__ Must Practice numericals of Disk Scheduling Algorithms.
     * Preemptive ( complete CPU burst is executed ) vs Non-Preemptive ( SRTF priority ).
   * Priority Scheduling : Smaller integer, highest priority. Can be preemptive & non-preemtive. Priority Scheduling  lead to starvation & Aging.
   * Round Robin : After each time quantam is preempted & a kept at the end of ready queue( all the processes that have arrived ). Large value of 'q' FIFO, 'q' small : must be large with respect to context switch otherwise overhead is too high. Complex numerical will have different arrival time.
-  
+
 ---
+
+### Real Time Operating Systems
+
+* Terms & Definitions :
+  * Release Time : Instant at which task is ready for execution.
+  * Schedule Time : Time instant when task is scheduled.
+  * Completion Time : Task completes an execution.
+  * Deadline : time instant before which the task should get completed.
+  * Runtime : after release time, time taken for completion.
+  * tardiness : the time by which task misses deadline. Completion Time - Deadline.
+  * Laxity : Amount of time task can wait still meat deadlines. Deadline - Computation Time.
+  * Aperiodic tasks : they have irregular arrival times and either soft or hard deadlines.
+  * Sporadic tasks  : two successive requests must be separated in time by at least p “time units.”
+  * Offline scheduling ( future order is known ) v/s Online scheduling ( future order is not known )
+  * Static Priority & Dynamic Priority :
+    * Static Priority :
+      * Non-preemptive
+      * Preemptive
+    * Dynamic Priority :
+      * Planned System
+      * Best Effort Algorithm
+* RMA : As period increase priority decreases. __Summation(Ci/Pi) <= n(2^(1/n)-1)__ , if condition satisfied then schedulable process. 
+  * Schedule in such a manner that after certain periodicity, the process does get finished beforehand. And at period start newer instance of process can get started. Schedule it process of largest period gets schedules with this algorithm.
+  * In condition value is <= 1 then either process is schedulable or we cannot say anything. Summation greater than 1, inschedulable process.
+* EDF( Earliest Deadline First Algorithm ) : The task for which deadline approaches near gets the highest priority as compared to the normal one.
+
 --- 
 #### References
 * Dietel OS book.
