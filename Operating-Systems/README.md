@@ -133,6 +133,56 @@ Runnable's implementation is better as, java doesn't allow multiple inheritance.
   
 ---
 
+### Disk Scheduling Algorithm & RAIDs
+
+* Multiple I/O request comes one is served rest waits, this scheduling is done with Disk Scheduling Algorithms as hard drives are slowest . 
+
+```
+Disk Access Time = Seek Time( Time taken to locate disk arm where data is to be written/read) +
+                   Rotational Latency( time taken by desired sector to reach read/write heads ) +
+                   Transfer time( time taken to transfer data. depends on rotational speed of disk & bytes transferred ).
+                   
+Disk Response Time( average waiting time spent by a process while getting scheduled after a I/O operation ) = DAT + Disk Queuing Delay.
+```
+
+* Disk Scheduling Algorithms :
+  * FCFS : Requests are served in order they arrive in. Easy to implement & involves unnecessary seek distance.
+  * SSTF : Service request with shortest seek time from current position. May starve some requests & good algorithm for small list of requests.
+  * Scan Algorithm : Disk start from one end & moves towards other end. It services request as it moves on & reverses its direction when hits the other end. Good for heavy loads & more fair.
+    * High throughput, low variance in scheduling.
+    * long waiting time.
+  * Circular Scan : Similar to Scan algorithm but head reaches the other end w/o any servicing carrying out in between. Cylinders treated as circular. Waiting time more uniform near the edge of disk.
+  * Look : It is enchancement to Scan with no movement towards the end of tracks. To avoid unnecessary disk operations.
+  * C-Look : Look + C-Scan. Lower variance response time, but lower throughput than Look also.
+  * FSCAN : freeze the queue & service only those requests at the queue at that time.
+  * N-Step SCAN : Service only first 'n' requests in the queue at time.
+    * Both reduces indefinent postponement.
+    * Variance in response time is reduced as compared to SCAN.
+  * Rotational optimacy :
+    * SLTF : shortest latency( time taken by desired sector to reach read/write head ) is served first.
+    * SPTF : least positioning time( seek time + rotational latency ).
+    * SATF : Shortest Access time first( transfer time + position time ).
+  * Cache Buffer, Disk Fragmentation, Compression, Multiple copies of frequent data, record blocking & disk arm anticipation can be used as way to decrease at I/O access operations.
+
+__Note :__ Must Practice numericals of Disk Scheduling Algorithms.
+
+* __Redundant Arrays of Independent Disks__, developed to avoid pending 'I/O' crisis.
+    * Additional drivers used to improve data integrity, Parallel/muliple accesses. Decreases MTTF, but more disks increases more point of failure. 
+* data is stored as strips which upon collection becomes stripes.    
+* Description of Different RAIDs levels :
+
+| RAID level | Description | Read Concurrency | Write Concurrency | Redundancy | Striping Level |
+| --- | --- | --- | --- | --- | --- |
+| 0 | Includes stripes, but no redundancy | Yes | Yes | None | Block |
+| 1 | each drive mirror of another, half data is unique only | Yes | No | Mirror | None |
+| 2 | Striped at bit level, Hamming ECC for integrity. Mutilple parity disks | No | No | Hamming ECC | Bit |
+| 3 | Striped at bit level, XOR ECC memory. Single parity disks | No | No | XOR ECC parity | Bit/Byte |
+| 4 | Stores block level parity, single write/but multiple read | Yes | No | XOR ECC parity | Block |
+| 5 | Parity block distributed, removes bottleneck of level 4 | Yes | No | Distributed XOR ECC parity | Block |
+
+* Important raid level concepts :
+  * RAID level 0 + 1 : striped disks copied/mirroed to another disks.
+  * RAID level 1 + 0 : set of mirrored data striped accross disks.
 
 --- 
 #### References
