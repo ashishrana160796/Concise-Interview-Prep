@@ -231,6 +231,23 @@ __Note :__ Must Practice numericals of Disk Scheduling Algorithms.
   * In condition value is <= 1 then either process is schedulable or we cannot say anything. Summation greater than 1, inschedulable process.
 * EDF( Earliest Deadline First Algorithm ) : The task for which deadline approaches near gets the highest priority as compared to the normal one.
 
+---
+
+### Networking Basics
+
+* Token Ring : Operate on a ring network. Employs token to gain access to transmission medium. A token controls access to transmission medium is an empty frame circulated between over a network having logical ring topology.
+  * When machine owns a token, it generates data, places it in a frame & sends it to its neighbour.
+  * Token ring protocol token is releases by the node, & via hops it gets delivered to end node.
+* FDDI( Fiber Distributed Data Interface ) : Supports transfer at higher speeds & larger distance. Built on two token rings & second is usually reserved for backup.
+* Tier Architectures :
+  * Two tiers :
+    * UI is on client side.
+    * data resides on server side.
+    * application logic lies on both these side.
+  * Three tiers :
+    * logic layer resides on its own layer.
+
+---
 --- 
 #### References
 * Dietel OS book.
