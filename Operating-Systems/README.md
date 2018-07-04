@@ -248,6 +248,50 @@ __Note :__ Must Practice numericals of Disk Scheduling Algorithms.
     * logic layer resides on its own layer.
 
 ---
+
+### File Basics 
+
+* Data needed to manage & open files :
+  * File Pointer : pointer to last read/write location, per process that has open file.
+  * File-open count : Counts number of times a file is open. allows removal of data from open-file table when last process closes it.
+  * Disk location in file : cache of data access information.
+  * Access Rights : per-process access mode information.
+* File types & possible extensions :  
+
+| file type | usual extensions | function |
+| --- | --- | --- |
+| executable | exe, com, bin, or none | ready-to-run machine language program |
+| object | obj, o | compiled, machine language, not linked |
+| source code | c, cc, java, pas, asm, a | compiled, machine language, not linked |
+| batch | bat, sh | commands to command interpreter |
+| text | txt, doc | text data, documents |
+| word processor | wp, tex, rtf, doc | various word-processor format |
+| library | lib, a, so, dll | libraries of routines for programs |
+| print | ps, pdf, jpg | ASCII or binary format |
+| archive | arc, zip, tar | files grouped into one |
+| multimedia | mpeg, mp3, mp4 | binary files containing audio or A/V information |
+
+* Sequential Access v/s Direct Access
+```
+Sequential Access :
+  read access
+  write access
+  reset
+  no read after last write ( rewrite )
+
+Direct Access : n = relative block number
+  read n
+  write n
+  position to n
+      read next
+      write next
+  rewrite n
+
+```
+
+* Index & Relative Files : In index file a map with logical record will exist & this number will point to actual location of the relative file which is the actual one.
+* Directory is collection of nodes containing all information about all files. Tree structure being most efficient implementation.  
+
 --- 
 #### References
 * Dietel OS book.
