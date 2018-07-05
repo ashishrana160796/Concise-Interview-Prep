@@ -258,6 +258,54 @@ Example:
 
 ---
 
+### Virtual Memory
+
+* Seperate logical space from physical memory. Logical address can be much larger > physical address. Part of process is needed to be in logical space. Allows efficient process creation. Implemented via demand paging & demand segmentation. It is mapped to physical memory via a memory map.
+* Page is needed, make reference to it. If invalid reference -> abort otherwise not in memory -> bring to memory.
+* Transfer of page memory upon demands happen with swap in/out of Contigous Disk Space. When some pages in demand are not in main memory i.e. blocking store is having all the pages. 
+* Valid/Invalid Bit : With each page table entry valid/invalid is associated, during page-translation if this bit is 0 -> page fault.  
+* Page Fault logic : first reference to such page is trapped and page fault has happened. Then valid or invalid page reference is checked. Time to get an empty frame & swap page in with it, validation bit set to 1.
+```
+EAT for page fault swapping with probability( p ) : (1-p)xmemory access + p*(page fault overhead + swap page out + swap page in + restart overhead )
+```
+* Copy On Write : both child & parent processes can initially share same pages in memory. If any of them modifies a page then only it is copied.
+* Number faults becomes constant even if number of frames goes to infinity. It converges to a value.
+* Page replacement algorithms discussion :
+```
+Initial filling of frames is also counted as page faults.
+
+FIFO Algorithm : In FIFO replacement more frames can give more faults Belady's anomaly. Algorithm
+is simply first in page will go out first.
+
+Optimal Algorithm : Replace the page that will not be used for longest period of time. If no such
+thing applicable in the end part of reference then just do FIFO.
+
+LRU Algorithm : Maintain a stack like data structure/ or a counter with for evaluating which page
+was least earlier on and replace the oldest of the pages. Stack size will be equivalent to number of
+frames.
+
+Approximation Algorithms for LRU :
+
+Reference bit :
+The page which is reference make modificaiton/referece bit as 1, & replace pages with reference bit as 0. & Follow a circular queue of pages.
+
+Second Chance Algorithm : Associate reference bit to frames, whenever page is reference twice make reference bit as 1, this bit will be made zero when this page was supposed to get replaced because it was least recently used one but now it will get second chance, for now other least recently used page will be replaced with reference bit 0. Second chance can be given to multiple pages if more then one frames are set to 1 -> they are all set to 0. 
+
+LFU : Replace page with minimum count in refernce string.
+MFU : Replace page with maximum count in refernce string. page brought in just to be used which is having least count.So, don't replace it.
+
+```
+* Frames allocation to processes happen either in fixed manner or proportional to size of process. Global vs local replacement : process replace from all frames possible v/s selects only from allocated frmaes.
+* __Thrashing :__ Not enough pages to carry out swapping, processor gets busy in swapping process. CPU utilization goes low when degree of multiprogramming decreases, thrashing starts at this point.
+  * Demand paging works because of locality model. Process migrates from one locality to another.
+  * Sigma ( size of locality ) > total memory size.
+* Working Set Model : Delta = working-set windows. a fixed number of page references.
+  * Delta value should be ideally to encompass entire locality only not process or program.
+  * D = Sigma(Deltas) = total demand frames.
+  * if D > m => Thrashing. Policy, is to suspend one process.
+
+---
+
 ### Networking Basics
 
 * Token Ring : Operate on a ring network. Employs token to gain access to transmission medium. A token controls access to transmission medium is an empty frame circulated between over a network having logical ring topology.
@@ -274,7 +322,8 @@ Example:
 
 ---
 
-### File Basics 
+### File System Interface
+
 
 * Data needed to manage & open files :
   * File Pointer : pointer to last read/write location, per process that has open file.
@@ -296,7 +345,7 @@ Example:
 | archive | arc, zip, tar | files grouped into one |
 | multimedia | mpeg, mp3, mp4 | binary files containing audio or A/V information |
 
-* Sequential Access v/s Direct Access
+* Sequential Access v/s Direct Access, read & write next are post increment in nature.
 ```
 Sequential Access :
   read access
@@ -315,7 +364,23 @@ Direct Access : n = relative block number
 ```
 
 * Index & Relative Files : In index file a map with logical record will exist & this number will point to actual location of the relative file which is the actual one.
-* Directory is collection of nodes containing all information about all files. Tree structure being most efficient implementation.  
+* Directory is collection of nodes containing all information about all files. Tree structure being most efficient implementation.
+* make, delete a file & delete a directory :
+  * rm <file-name>, rm -r <dr-name>
+  * mkdir <dr-name>
+*  Acyclic-graph directories :
+  * backpointers, using daisy chain( one stem & other branches points to files ) organizations of directories.
+* General Graph Directory :
+  * Allow link to files only not sub-directories.
+  * Garbage Collection.
+* Mounting & Unmounting of files depending upon the mount point of file systems.
+* Network File Sharing system is a common distributed file sharing system.
+  * User IDs, Group IDs : permissions & access rights.
+  * Distributed Information Systems like DNS, LDAP( light-weight directory access ) is distributed directory system over IP, it modfied data for SPs like Active Directory.
+* Access List & groups:  
+  * Three classes of access OGP(Owner, Group, Public) : Example : chmod 777 FileName
+  * Value for each group is specified by RWX.
+  * Remember __OGP__ & __RWX__ .
 
 --- 
 #### References
