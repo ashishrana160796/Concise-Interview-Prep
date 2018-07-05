@@ -170,6 +170,44 @@ Slow alogirthm for reverse sorted data.
   ```
   
 ---
+Heap Sort: Not a stable sort. Complexity O(nlogn)(Best and Worst both)
+
+1. Build a max heap from the input data.
+2. At this point, the largest item is stored at the root of the heap. Replace it with the last item of the heap followed by reducing the size of heap by 1. Finally, heapify the root of tree.
+3. Repeat above steps while size of heap is greater than 1.
+
+```
+void heapify(int A[], int n, int i)
+{
+    int largest = i;  
+    int l = 2*i + 1;  // left child
+    int r = 2*i + 2;  // right child
+    
+    if (l < n && A[l] > arr[largest])
+        largest = l;
+ 
+    if (r < n && A[r] > arr[largest])
+        largest = r;
+        
+    if (largest != i)
+    {
+        swap(A[i], A[largest]);
+ 
+        // Recursively heapify the affected sub-tree
+        heapify(arr, n, largest);
+    }
+}
+void heapSort(int A[], int n)
+{
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(A, n, i);
+    for (int i=n-1; i>=0; i--)
+    {
+        swap(A[0], A[i]);
+        heapify(A, i, 0);
+    }
+}
+```
 ## Implemented Sorting Codes
 
 * [Cocktail Sort](Sorting-Algorithms/CocktailSort.java)
