@@ -169,12 +169,12 @@ Slow alogirthm for reverse sorted data.
   return i+1
   ```
   
----
-Heap Sort: Not a stable sort. Complexity O(nlogn)(Best and Worst both)
 
-1. Build a max heap from the input data.
-2. At this point, the largest item is stored at the root of the heap. Replace it with the last item of the heap followed by reducing the size of heap by 1. Finally, heapify the root of tree.
-3. Repeat above steps while size of heap is greater than 1.
+* Heap Sort: Not a stable sort. Complexity O(nlogn)(Best and Worst both)
+
+  1. Build a max heap from the input data.
+  2. At this point, the largest item is stored at the root of the heap. Replace it with the last item of the heap followed by reducing the size of heap by 1. Finally, heapify the root of tree.
+  3. Repeat above steps while size of heap is greater than 1.
 
 ```
 void heapify(int A[], int n, int i)
