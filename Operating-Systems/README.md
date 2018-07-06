@@ -305,6 +305,26 @@ MFU : Replace page with maximum count in refernce string. page brought in just t
   * if D > m => Thrashing. Policy, is to suspend one process.
 
 ---
+### Deadlock
+A process in operating systems uses different resources and uses resources in following way.
+1) Requests a resource
+2) Use the resource
+3) Releases the resource
+
+Deadlock is a situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process.
+Deadlock can arise if following four conditions hold simultaneously (Necessary Conditions)
+* Mutual Exclusion: One or more than one resource are non-sharable (Only one process can use at a time)
+* Hold and Wait: A process is holding at least one resource and waiting for resources.
+* No Preemption: A resource cannot be taken from a process unless the process releases the resource.
+* Circular Wait: A set of processes are waiting for each other in circular form.
+
+#### Methods for handling deadlock
+There are three ways to handle deadlock
+1) Deadlock prevention or avoidance: The idea is to not let the system into deadlock state.
+2) Deadlock detection and recovery: Let deadlock occur, then do preemption to handle it once occurred.
+3) Ignore the problem all together: If deadlock is very rare, then let it happen and reboot the system. This is the approach that both Windows and UNIX take.
+
+
 
 ### Networking Basics
 
