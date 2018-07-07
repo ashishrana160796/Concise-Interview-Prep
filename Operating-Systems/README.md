@@ -276,7 +276,18 @@ Example:
   * No preemption : Preempted resources are added to list of available one.
   * Circular wait : each process must request resources in an increasing order.
 * Safe state system is when processes request sequence of resources are allocated w/o deadlock happening.
-* Resource Allocation graph to wait-for graph conversion study is a must. 
+* Resource Allocation graph to wait-for graph conversion study is a must.
+* __Banker Algorithm Study & Practice Numerical__ : Coplexity of Algorithm that detect deadlock state is O(m x n^2)
+  * [Refer this video, if complete newbie](https://www.youtube.com/watch?v=w0LwGqffUkg)
+  ```
+  Work, Finish vectors of length m(instance of resources) & n (processes)
+  
+  Work = Available    // Available is resource of diffrent types available for allication of size m
+  Finish[i] = false   // Of size 'n'
+  for all i to n Finish[i] = false && Need <= Work    // Need[i,j] = Max[i,j] - Allocated[i,j]
+      Work +=Allocation'i'
+      if Finish[i] == true for all , then system in safe state otherwise deadlock detected.     
+  ```
 ---
 
 ### Process Synchronization
@@ -291,8 +302,7 @@ On the basis of synchronization, processes are categorized as one of the followi
   * Any solution to the critical section problem must satisfy three requirements:
     * Mutual Exclusion : If a process is executing in its critical section, then no other process is allowed to execute in the critical section.
     * Progress : If no process is in the critical section, then no other process from outside can block it from entering the critical section.
-    * Bounded Waiting : A bound must exist on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted.
-    
+    * Bounded Waiting : A bound must exist on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted. 
 
 ---
 
