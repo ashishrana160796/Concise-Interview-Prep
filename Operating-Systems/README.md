@@ -217,7 +217,25 @@ __Note :__ Must Practice numericals of Disk Scheduling Algorithms.
   * Divided physical space of equal size is known as frames. Size is of power of 2.
   * Logical memory blocks of same size called pages.
   * Run a program of n pages, need n free frames & load program. page table is setup for such translation.
+  * CPU addresses divided into 2 components :
+    * Page number(p) : used as index in page table, which contains base address of physical memory.
+    * Page offest(d) : combined with physical memory address that is sent to memory unit.
+* Page table implementation :
+  * PTBR(page table base register) points to page table.
+  * PTLR(-- -- length register) size of page table.
+  * two memory accesses : page table + data instruction fetch.
+* __TLB__(transition lookaside buffer) & associative memory : If page is present in TLB then get its frame out or otherwise take it out from page table memory.
+  * Effective Access Time : 
+    * Associative lookup : 'e' time unit
+    * EAT : 'a'be hit ratio, 'm' be memory lookup, => (m+e)a + (2*m+e)(1-a), 2m because first memory lookup gets failed up.  
+    * Valid-Invalid bit : '1' associated page is in logical address space otherwise not.  
+__Note__ : Page table structure are omitted.
 
+* Shared pages : Shared code, shared read only code amongst processes & shared code is in same location with logical address space. Private code & data, each process keeps its own copy.
+* __Segmentation__ : MMU that supports user view of memory.
+  * logical address tuple <segment-number, offset>.
+  * Segment table : 2-D physical address. base( starting physical address ) & limit( length of segment ).
+  * STBR, STLR(legal if number of segments < STLR).
 
 Example:
 
@@ -228,9 +246,9 @@ Example:
 
 * The mapping from virtual to physical address is done by the memory management unit (MMU) which is a hardware device and this mapping is known as paging technique.
 
-   * The Physical Address Space is conceptually divided into a number of fixed-size blocks, called frames.
-   * The Logical address Space is also splitted into fixed-size blocks, called pages.
-   * Page Size = Frame Size
+  * The Physical Address Space is conceptually divided into a number of fixed-size blocks, called frames.
+  * The Logical address Space is also splitted into fixed-size blocks, called pages.
+  * Page Size = Frame Size
 
 ---
 
