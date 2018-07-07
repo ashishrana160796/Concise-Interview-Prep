@@ -297,13 +297,195 @@ On the basis of synchronization, processes are categorized as one of the followi
   * Cooperative Process : Execution of one process affects the execution of other processes.
 
 * Process synchronization problem arises in the case of Cooperative process also because resources are shared in Cooperative processes.
-* __Critical Section Problem__ : Critical section is a code segment that can be accessed by only one process at a time. Critical section contains shared variables which need to be synchronized to maintain consistency of data variables.
-  * In the entry section, the process requests for entry in the Critical Section.
-  * Any solution to the critical section problem must satisfy three requirements:
-    * Mutual Exclusion : If a process is executing in its critical section, then no other process is allowed to execute in the critical section.
-    * Progress : If no process is in the critical section, then no other process from outside can block it from entering the critical section.
-    * Bounded Waiting : A bound must exist on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted. 
+* Consider Problem of producer & consumer where the common variable count is to be incremented or decremented by processes.
+```
+#define BUFFER_SIZE 10
+typedef struct {
+DATA data;
+} item;
+item buffer[BUFFER_SIZE];
+int in = 0;    // Location of next input to buffer
+int out = 0;    // Location of next output from buffer
+int counter = 0;    // Number of buffers that are actually full.
 
+item nextProduced;    // PRODUCER
+while (TRUE) {
+while (counter == BUFFER_SIZE);
+buffer[in] = nextProduced;
+in = (in + 1) % BUFFER_SIZE;
+counter++;                                        // Counter will be manipulated by producer & consumer
+}                                                 // leading to a conflict in values 
+                                                  // counter++ => reg = count ; reg = reg+1 ; count = reg
+item nextConsumed;    // CONSUMER
+while (TRUE) {                                    // Two different values counter appear with after inc & dec
+while (counter == 0);
+nextConsumed = buffer[out];
+out = (out + 1) %
+BUFFER_SIZE;
+counter--;
+}
+```
+
+* __Critical Section Problem__ : Critical section is a code segment that can be accessed by 'n' processes at a time which shares common variables. Critical section contains shared variables which need to be synchronized to maintain consistency of data variables.
+  * In the entry section, the process requests for entry in the Critical Section. Code segments :
+    * Entry Section. to critical part
+    * Critical Section.
+    * Exit Section. from critical part
+    * Remainder Section.
+  * Any solution to the critical section problem must satisfy three requirements:
+    * Mutual Exclusion : only one process, execute in the critical section.
+    * Progress : If no process is in the critical section, then no other process from outside can block it from entering the critical section. Processes must be able to decide in finite time which one should enter critical section.
+    * Bounded Waiting : A bound must exist on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted.
+  * Algorithms for process syc. 'i' & 'j' be the processes & check do the conditions are met or not.
+  ```
+  Algo 1 : Paterson's Algorithm, shared variables int turn, boolean flg[2];
+  do {
+    f[i] = true
+    turn = j
+    while(f[j]=true && turn==j);    // if f[i] == true & f[j] also, then no progress will be made problem
+    // critical section
+    f[i]=false;
+    // remainder section
+  }while(true)
+  ```
+  * Imagine other 2 algorithms one with only turn variable as trap and other with only flag variable as a trap. Both will also have bounded wait problem. flag one is also having progress issue, if both are true let's say.
+  * Critical section problems can also be solved with acquire lock & release lock mechanism.
+    * TestAndSet Algorithm :
+    ```
+    do {  // TestAndSet sets the passed variable to high 
+          while ( TestAndSet (&lock ));   // do nothing
+          // critical section
+          lock = FALSE;
+          //      remainder section 
+    } while (TRUE);
+    ```
+    * Shared variable swapping key :
+    ```
+    do {
+      key = TRUE;
+      while ( key == TRUE)
+        Swap (&lock, &key );
+        //    critical section
+        lock = FALSE;
+        //      remainder section 
+    } while (TRUE);
+    ```
+    * Bounded Waiting Mutual Exclusion :
+    ```
+    do{
+    waiting[i]=TRUE;  // is that process in waiting 
+    key=TRUE;
+    while(waiting[i] && key)
+      key=TestAndSet(&lock);
+    waiting[i]=FALSE; 
+    // critical section
+    j = (i+1)%n;
+    while((j!=i) && !waiting[j])   // waiting time for j is getting increased/changed
+    j = (j+1)%n;
+    if(j==i)    // lock is released
+      lock = false;
+    else    // deciding waiting of j
+      waiting[j] = false;
+    
+    //remainder section
+    } while (TRUE);
+    ```
+  * Semaphores : Integer variables for enforcing synchronization. Counting semaphores & Binary semaphores are there, also known as mutex locks.
+    * wait() & signal() method for introuduction of bounded wait condition. Only be accessed via two indivisible (atomic) operations.
+    ```
+    wait (S) { 
+           while S <= 0; // no-op
+              S--;
+      }
+    signal (S) { 
+        S++;
+     }
+    ```
+    * Semaphore mutex basic algorithm :
+    ```
+    Semaphore mutex;    //  initialized to 1
+    do {
+	     wait (mutex);  // wait until signal by other process not given
+      // Critical Section
+     signal (mutex);  // afterc completion signal is given out
+		   // remainder section
+    } while (TRUE);    // wait & signal shouldn't be executed at same time. Application can spend lot of time in critical section, therefore not a good solution.
+    ```
+    * Semaphore Implementation with no busy waiting : Each semaphore is having waiting queue, with value & pointer to next record. Block(put operation in appropriate waiting queue put) & Wakeup(from waiting to ready queue) are two operations.
+    ```
+    wait(semaphore *S) { 
+			   S->value--; 
+			   if (S->value < 0) { 
+				    add this process to S->list; 
+				    block(); 
+			   } 
+		  }
+    
+    signal(semaphore *S) { 
+			   S->value++; 
+			   if (S->value <= 0) { 
+				    remove a process P from S->list; 
+				    wakeup(P); 
+			   }
+		  }
+    ```
+    * Problems are : deadlocks, starvation & priority inversion.  
+  * Classical Synchronization Problems : 3 Types of problems discussed.
+    * Bounded Buffer Problem : mutex = 1, full=0, empty=n
+    ```
+    producer process :
+    do{
+       //   produce an item in nextp
+       wait (empty);
+       wait (mutex);
+       //  add the item to the  buffer
+       signal (mutex);
+       signal (full);
+       } while (TRUE);
+    consumer process :
+    do{
+       wait (full);
+       wait (mutex);
+       //  remove an item from  buffer to nextc
+       signal (mutex);
+       signal (empty);
+       //  consume the item in nextc
+       } while (TRUE);
+    ```
+    * Readers-Writers Problem : mutex = 1, readcount = 0, wrt = 1. Readers can only read & writers can both read & write.
+    ```
+    Writer Process :
+    do{
+       wait (wrt) ;
+       //    writing is performed
+       signal (wrt) ;
+       } while (TRUE);
+    Reader Process :
+    do{
+      wait(mutex) ;  // *
+      readcount ++ ;
+      if (readcount == 1)  
+			     wait (wrt) ;
+      signal (mutex)
+      // reading is performed
+      wait(mutex) ;    // *
+      readcount  -- ;
+      if (readcount  == 0)  
+			     signal (wrt) ;
+      signal (mutex) ;
+      } while (TRUE);
+    ```
+    * Dining Philospher problem :
+    ```
+    do{ 
+      wait ( chopstick[i] );
+	     wait ( chopStick[ (i + 1) % 5] );
+	     //  eat
+	     signal ( chopstick[i] );
+	     signal (chopstick[ (i + 1) % 5] );
+      //  think
+    } while (TRUE);
+    ```
 ---
 
 ### CPU Scheduling Theory
