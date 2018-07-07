@@ -246,43 +246,52 @@ Example:
 
 * The mapping from virtual to physical address is done by the memory management unit (MMU) which is a hardware device and this mapping is known as paging technique.
 
+---
+
+### Deadlock
+* A process in operating systems uses different resources and uses resources in following way.
+  * Requests a resource
+  * Use the resource
+  * Releases the resource
+  
+* Deadlock is a situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process.
+* Deadlock can arise if following four conditions hold simultaneously (Necessary Conditions)
+  * Mutual Exclusion: One or more than one resource are non-sharable (Only one process can use at a time)
+  * Hold and Wait: A process is holding at least one resource and waiting for resources.
+  * No Preemption: A resource cannot be taken from a process unless the process releases the resource.
+  * Circular Wait: A set of processes are waiting for each other in circular form.
+* Study resource allocation graphs :
+  * Know how resource represents instances in it.
+  * How process request(P->R) or holds(R->P) a resource.
+    * If no cycles then no deadlock.
+    * Allow system to recover from deadlock, if cycle is there & multiple instances are there possiblity that deadlock might not be there. Single instance, it is confirmed that deadlock is there.
+    * Claim edge : might the resource be accessed. Converts to request edge when resource is requested.
+* Methods for handling deadlock : There are three ways to handle deadlock
+1) Deadlock prevention or avoidance: The idea is to not let the system into deadlock state.
+2) Deadlock detection and recovery: Let deadlock occur, then do preemption to handle it once occurred.
+3) Ignore the problem all together: If deadlock is very rare, then let it happen and reboot the system. This is the approach that both Windows and UNIX take.
+* DeadLock Prevention with removal of these things :
+  * Mutual Exclusion : not required by sharable processes.
+  * Hold & Wait : allow process to request resources only when it has none.
+  * No preemption : Preempted resources are added to list of available one.
+  * Circular wait : each process must request resources in an increasing order.
+* Safe state system is when processes request sequence of resources are allocated w/o deadlock happening.
+
+---
+
 ### Process Synchronization
 
 On the basis of synchronization, processes are categorized as one of the following two types:
-
-    Independent Process : Execution of one process does not affects the execution of other processes.
-    Cooperative Process : Execution of one process affects the execution of other processes.
+  * Independent Process : Execution of one process does not affects the execution of other processes.
+  * Cooperative Process : Execution of one process affects the execution of other processes.
 
 * Process synchronization problem arises in the case of Cooperative process also because resources are shared in Cooperative processes.
-#### Critical Section Problem
-
-Critical section is a code segment that can be accessed by only one process at a time. Critical section contains shared variables which need to be synchronized to maintain consistency of data variables.
-
-In the entry section, the process requests for entry in the Critical Section.
- 
-Any solution to the critical section problem must satisfy three requirements:
-
-    Mutual Exclusion : If a process is executing in its critical section, then no other process is allowed to execute in the critical section.
-    Progress : If no process is in the critical section, then no other process from outside can block it from entering the critical section.
-    Bounded Waiting : A bound must exist on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted.
-
-#### Peterson’s Solution
-Peterson’s Solution is a classical software based solution to the critical section problem.
-
-In Peterson’s solution, we have two shared variables:
-
-    boolean flag[i] :Initialized to FALSE, initially no one is interested in entering the critical section
-    int turn : The process whose turn is to enter the critical section.
-Peterson’s Solution preserves all three conditions :
-* Mutual Exclusion is assured as only one process can access the critical section at any time.
-* Progress is also assured, as a process outside the critical section does not blocks other processes from entering the critical section.
-* Bounded Waiting is preserved as every process gets a fair chance.
-
-#### TestAndSet
-TestAndSet is a hardware solution to the synchronization problem. In TestAndSet, we have a shared lock variable which can take either of the two values, 0 or 1.
-
-0 Unlock
-1 Lock
+* __Critical Section Problem__ : Critical section is a code segment that can be accessed by only one process at a time. Critical section contains shared variables which need to be synchronized to maintain consistency of data variables.
+  * In the entry section, the process requests for entry in the Critical Section.
+  * Any solution to the critical section problem must satisfy three requirements:
+    * Mutual Exclusion : If a process is executing in its critical section, then no other process is allowed to execute in the critical section.
+    * Progress : If no process is in the critical section, then no other process from outside can block it from entering the critical section.
+    * Bounded Waiting : A bound must exist on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted.
 
 ---
 
@@ -380,26 +389,6 @@ MFU : Replace page with maximum count in refernce string. page brought in just t
   * if D > m => Thrashing. Policy, is to suspend one process.
 
 ---
-### Deadlock
-A process in operating systems uses different resources and uses resources in following way.
-1) Requests a resource
-2) Use the resource
-3) Releases the resource
-
-Deadlock is a situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process.
-Deadlock can arise if following four conditions hold simultaneously (Necessary Conditions)
-* Mutual Exclusion: One or more than one resource are non-sharable (Only one process can use at a time)
-* Hold and Wait: A process is holding at least one resource and waiting for resources.
-* No Preemption: A resource cannot be taken from a process unless the process releases the resource.
-* Circular Wait: A set of processes are waiting for each other in circular form.
-
-#### Methods for handling deadlock
-There are three ways to handle deadlock
-1) Deadlock prevention or avoidance: The idea is to not let the system into deadlock state.
-2) Deadlock detection and recovery: Let deadlock occur, then do preemption to handle it once occurred.
-3) Ignore the problem all together: If deadlock is very rare, then let it happen and reboot the system. This is the approach that both Windows and UNIX take.
-
-
 
 ### Networking Basics
 
