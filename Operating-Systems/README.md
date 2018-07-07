@@ -276,7 +276,7 @@ Example:
   * No preemption : Preempted resources are added to list of available one.
   * Circular wait : each process must request resources in an increasing order.
 * Safe state system is when processes request sequence of resources are allocated w/o deadlock happening.
-
+* Resource Allocation graph to wait-for graph conversion study is a must. 
 ---
 
 ### Process Synchronization
@@ -292,6 +292,7 @@ On the basis of synchronization, processes are categorized as one of the followi
     * Mutual Exclusion : If a process is executing in its critical section, then no other process is allowed to execute in the critical section.
     * Progress : If no process is in the critical section, then no other process from outside can block it from entering the critical section.
     * Bounded Waiting : A bound must exist on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted.
+    
 
 ---
 
@@ -472,6 +473,3 @@ Direct Access : n = relative block number
 * Operating Systems Concepts - Dinosaur Book.
   * Why Dinosaurs ?
     In 1985 when first edition was written 'OS wars' was going on. Every OS was fighting for its existance but the fittest & most adaptable ones survived. Similarly, OS needed to adapt with technology & time, a stagnant technology will lead to extinction.
----
-#### Note :
-* Topics related to OS will be added soon, within a week.
