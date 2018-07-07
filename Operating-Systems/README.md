@@ -246,9 +246,43 @@ Example:
 
 * The mapping from virtual to physical address is done by the memory management unit (MMU) which is a hardware device and this mapping is known as paging technique.
 
-  * The Physical Address Space is conceptually divided into a number of fixed-size blocks, called frames.
-  * The Logical address Space is also splitted into fixed-size blocks, called pages.
-  * Page Size = Frame Size
+### Process Synchronization
+
+On the basis of synchronization, processes are categorized as one of the following two types:
+
+    Independent Process : Execution of one process does not affects the execution of other processes.
+    Cooperative Process : Execution of one process affects the execution of other processes.
+
+* Process synchronization problem arises in the case of Cooperative process also because resources are shared in Cooperative processes.
+#### Critical Section Problem
+
+Critical section is a code segment that can be accessed by only one process at a time. Critical section contains shared variables which need to be synchronized to maintain consistency of data variables.
+
+In the entry section, the process requests for entry in the Critical Section.
+ 
+Any solution to the critical section problem must satisfy three requirements:
+
+    Mutual Exclusion : If a process is executing in its critical section, then no other process is allowed to execute in the critical section.
+    Progress : If no process is in the critical section, then no other process from outside can block it from entering the critical section.
+    Bounded Waiting : A bound must exist on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted.
+
+#### Peterson’s Solution
+Peterson’s Solution is a classical software based solution to the critical section problem.
+
+In Peterson’s solution, we have two shared variables:
+
+    boolean flag[i] :Initialized to FALSE, initially no one is interested in entering the critical section
+    int turn : The process whose turn is to enter the critical section.
+Peterson’s Solution preserves all three conditions :
+* Mutual Exclusion is assured as only one process can access the critical section at any time.
+* Progress is also assured, as a process outside the critical section does not blocks other processes from entering the critical section.
+* Bounded Waiting is preserved as every process gets a fair chance.
+
+#### TestAndSet
+TestAndSet is a hardware solution to the synchronization problem. In TestAndSet, we have a shared lock variable which can take either of the two values, 0 or 1.
+
+0 Unlock
+1 Lock
 
 ---
 
