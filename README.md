@@ -30,7 +30,9 @@ These sub-sections are decided on the basis of latest requirements in current So
 * __Data Structures__ : Inner workings of data-structures with common complexities involved in it. Application specific usage of these data structures.  
 - [ ] [Big-O](Big-O/README.md) 
 * __Algorithms__ : Different paradigms and standard text-book algorithms will come in handy. Runtimes, limitations, classes & other detailed information is required. No pseudocodes, with each algorithm learned coding & different implementations related to it must also be understood.
+- [ ] [Algorithm-Concepts](Algorithm-Concepts/README.md)
 * __System Design__ : Basic OO-design, scalable implementations, design choices. Distributed designs, service-oriented architectures, map-reduce, distributed caching, load balancing.
+- [ ] [Database-Management](Database-Management/README.md)
 * __OS__ : All the basics of operating systems with memory management, processes, threads, synchronization, paging, and multithreading as a must.
 - [ ] [Operating-Systems](Operating-Systems/README.md)
 - [ ] [Interview-Questions](Operating-Systems/Interview-Questions/README.md)
