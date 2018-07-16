@@ -69,9 +69,22 @@ management related concepts to be discussed in detail with practical application
   * Foreign Key : attribute that refer to primary of another table. target table is the one containing reference to target tuple. Matter of integrity of foreign keys is referred to as Referential Integrity.
 * Number of tuples = cardinality of a relation. And number of attributes are degree of relation.
 * Domain is set of all possible valid values. Also, body of a relation consist of unordered set of zero or more tuples.
-  
----
 
+---
+## Normalization
+
+* A process of series of tests that a relation must pass in order to be in normal form. If test is not passed then individual sets are broken, to meet desired tests. Objective of normalization.
+  * Formalization framework develop & relational retrieval algorithm develop.
+  * Reduce restructing of relations with new data types & avoid free relations.
+* Basic types of normal form :
+  * 1st NF: Eliminate Repeating Groups.
+  * 2nd NF: Non-key attribute fully dependent functionally on PK.
+  * 3rd NF: Eliminate Transitive dependence on PK.
+  * 4th NF: Remove multi-value dependency.
+  * 5th NF: Projection Join dependency.
+* Detailed Analysis of Normalization:
+  * FD, X->Y, means with X (determinant) can determine Y's value. FFD, Y is determined by X only not on it's proper subset X.
+---
 __Note:__
 
 * Interview Preperation Section will soon be added.
