@@ -84,6 +84,18 @@ management related concepts to be discussed in detail with practical application
   * 5th NF: Projection Join dependency.
 * Detailed Analysis of Normalization:
   * FD, X->Y, means with X (determinant) can determine Y's value. FFD, Y is determined by X only not on it's proper subset X.
+  * Relation is __1NF__ if all underlying domains contains single values, i.e. all repeated unfilled entries are removed, by flattening the table.
+    * Flattening with filling non-repeated entries is the first approach, 
+    * Second approach is decomposition, for this one table consist of all non-repeating and other repeating attributes with containing table identifier. __Anomalies__ related to insertion, updation and deletion exists thats why needs 2NF.
+    * __2NF__ iff it is in 1NF & every non-functional attribute is dependent upon primary key. Drawing a FD diagram is also a good approach. Because of transitive dependence, anomalies can still exist with insertion, updation & deletion.
+    * __3NF__ iff in 2NF & no nonprime attribute determine a nonprime attribute, remove dependencies. If A->B->C non-symmetric relation is there, can be broken down into A->B & B->C.
+    * __BCNF__ makes no reference to 1NF & 2NF, but states that every determinant single or composite is a candidate key. A relation in 3NF is always in BCNF but not the opposite. __Overlapping candidate keys are main problem__ tha BCNF handles.
+    * __4NF__, If already in 3NF or BCNF & no Multi value dependency. In MVD an attribute can have multivalued fact about another. A relation R having A,B, and C, as attributes can be non loss- decomposed into two projections R1(A,B) and R2(A,C) if and only ifthe MVD A->->B|C hold in R.
+    * __5NF__, Already in 4NF and it cannot be non-loss decomposed. A table T is in 5NF if every join dependency(lossless reconstruction) in T is a consequence only of the candidate  keys in T.
+* Denormalization : helps in increasing the efficiency of data by keeping redundant data to avoid extra join overload.
+  * One way, Logical design is kept normalized, but keep redundant views to optimize the query like Indexed or materialized views. View represent information & queries are optimized. Denormalized databases need to be synchronized.
+  * denormalization of data should be done after certain level of normalization. Denormalization is not equivalent to non-normalized data.
+  * OLTP prefers normalized databases for consistency & OLAP prefers denormalized ones.
 ---
 __Note:__
 
