@@ -1,7 +1,5 @@
 # Information Management
 
----
-
 This is preperation repository for topics like database basics, SQL, basic PL/SQL, Cloud basics and other information
 management related concepts to be discussed in detail with practical applications.
 
@@ -96,7 +94,58 @@ management related concepts to be discussed in detail with practical application
   * One way, Logical design is kept normalized, but keep redundant views to optimize the query like Indexed or materialized views. View represent information & queries are optimized. Denormalized databases need to be synchronized.
   * denormalization of data should be done after certain level of normalization. Denormalization is not equivalent to non-normalized data.
   * OLTP prefers normalized databases for consistency & OLAP prefers denormalized ones.
+* __Codd Rules:__ Codd rules were proposed by E.F. Codd which should be satisfied by relational model.
+  * Information Rule: Data stored in Relational model must be a value of some cell of a table.
+  * Guaranteed Access Rule: Every data element must be accessible by table name, its primary key and name of attribute whose value is to be determined.
+  * Systematic Treatment of NULL values: NULL value in database must only correspond to missing, unknown or not applicable values.
+  * Active Online Catalog: Structure of database must be stored in an online catalog which can be queried by authorized users.
+  * Comprehensive Data Sub-language Rule: A database should be accessible by a language supported for definition, manipulation and transaction management operation.
+  * View Updating Rule: Different views created for various purposes should be automatically updatable by the system.
+  * High level insert, update and delete rule: Relational Model should support insert, delete, update etc. operations at each level of relations. Also, set operations like Union, Intersection and minus should be supported.
+  * Physical data independence: Any modification in the physical location of a table should not enforce modification at application level.
+  * Logical data independence: Any modification in logical or conceptual schema of a table should not enforce modification at application level. For example, merging of two tables into one should not affect application accessing it which is difficult to achieve.
+  * Integrity Independence: Integrity constraints modified at database level should not enforce modification at application level.
+  * Distribution Independence: Distribution of data over various locations should not be visible to end-users.
+  * Non-Subversion Rule: Low level access to data should not be able to bypass integrity rule to change data.
+
+---
+## Relational Algebra
+
+* Relational Algebra is procedural query language, which takes Relation as input and generate relation as output. Relational algebra mainly provides theoretical foundation for relational databases and SQL.
+* Operations in Relational Algebra :
+  * Projection (π) : Projection is used to project required column data from a relation.
+  ```
+      R              
+  (A  B  C)    
+  ----------
+   1  2  4
+   2  2  3
+   3  2  3
+   4  3  4
+   
+   π (BC) 
+    B  C
+    -----
+    2  4
+    2  3
+    3  4
+  ```
+  * Selection (σ) : Selection is used to select required tuples of the relations. For the above relation, σ (c>3)R will select the tuples which have c more than 3. To display above result we need projection also.
+  ```
+  π (σ (c>3)R ) will show following tuples.
+  A  B  C
+  -------
+  1  2  4
+  4  3  4
+  ```
+  * Union (U) : Union operation in relational algebra is same as union operation in set theory, only constraint is for union of two relation both relation must have same set of Attributes.
+  * Set Difference (-) : Set Difference in relational algebra is same set difference operation as in set theory with the constraint that both relation should have same set of attributes.
+  * Rename (ρ) : Rename is a unary operation used for renaming attributes of a relation. ρ (a/b)R will rename the attribute ‘b’ of relation by ‘a’.
+  * Cross Product (X) : Cross product between two relations let say A and B, so cross product between A X B will results all the attributes of A followed by each attribute of B. Each record of A will pairs with every record of B.
+  * Natural Join (⋈) : Natural join is a binary operator. Natural join between two or more relations will result set of all combination of tuples where they have equal common attribute.
+  * Conditional Join : Conditional join works similar to natural join. In natural join, by default condition is equal between common attribute while in conditional join we can specify the any condition such as greater than, less than, not equal
+ 
 ---
 __Note:__
-
+* Reference are from book Simplified approach to dbms : Parteek Bhatia Sir
 * Interview Preperation Section will soon be added.
