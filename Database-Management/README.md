@@ -146,6 +146,116 @@ management related concepts to be discussed in detail with practical application
   * Conditional Join : Conditional join works similar to natural join. In natural join, by default condition is equal between common attribute while in conditional join we can specify the any condition such as greater than, less than, not equal
  
 ---
+
+## SQL Basics
+
+* __Create table commands__ :
+  * Table names are note case-sensitive, characters in it are A-Z, a-z, 0-9, _(underscore),$ and #. Numbers of columns in a table can range from 1 to 1000. 
+  * Create table command. Also, varchar is variable length character & char is fixed length command.
+  ```
+  Create table student
+  (Name varchar(20),
+  Class varchar(15),
+  Roll_no number(4),  -- NUMBER(p,s), where p is precision & s is scalability
+  Address varchar(30));
+  ```
+  * Constraints column level & table level constraints of primary key can also be added. Names to constraints can also be assigned. 
+  ```
+  Create table student
+  (Name varchar (20) CONSTRAINT NN_NAME NOT NULL,
+  Roll_no number (5) NOT NULL,
+  Address varchar (40),
+  phone_no varchar (10));
+  /*
+  NOT NULL, UNIQUE, PRIMARY KEY( Syntantically it can also be added in seperate line, PRIMARY KEY (name, class) ),  
+  CHECK (salary > 5000) or CHECK (deptname in (‘general’,’accounts’)), DEFAULT value */
+  
+  --FOREIGN KEY ANALYSIS
+  --Deleting parent record might give error message if referenced by child, otherwise use ON DELETE CASCADE, RESTRICT, DEFAULT or ON UPDATE CASCADE etc. option.
+  --Another example of it as follow, deptno NUMBER(2) REFERENCES dept(deptno) on delete set null);
+  --Seperate line sytax, Foreign key (deptno,dname) references dept(deptno,dname)) ;
+  --Referential Integrity, parent-child relation b/w primary & foreign keys are preserved.
+  
+  ```
+  * __user_constraints table__, __user_cons_columns__ : Named user_constraints are present in it, few queries associated with it.
+  ```
+  Select owner, constraint_name,constraint_type, r_owner, r_constraint_name from user_constraints where table_name = ‘EMP_DETAIL’;
+  Select * from user_constraints;
+  SELECT * FROM USER_CONS_COLUMNS;
+  ```
+  * Create table from rows & columns of another table with SELECT & AS keywords.
+  ```
+  CREATE TABLE emp2 AS SELECT empno, ename, mgr, sal FROM emp WHERE deptno in (10,20);
+  ```
+* __Altering Tables__ : Syntaxes & Few cases are discussed at bottom for this ALTER option.
+```
+ALTER TABLE < table_name >
+[ADD < columnname > | <constraints >.......]
+[MODIFY <columnname>......]
+[DROP <options >];
+
+--Let's say for renaming, ALTER TABLE exampletable RENAME TO new_table_name;
+--Let's say adding a new column
+ALTER TABLE <table_name>
+[ADD <column_name datatype (size) | <constraints>
+,..........];
+```
+* __Truncate Table__ : Delete all rows from a table, TRUNCATE TABLE Customer or DELETE FROM Customer
+```
+Difference between TRUNCATE & DELETE :
+With Truncate data can't ne recovered. Truncate is DDL, DELETE is DML. Truncate releases the memory but DELETE doesn't.
+```
+
+---
+
+## Views, Sequences & Index
+
+* Views are tables which doesn't contain any data, data is taken from other tables. Content of original table can be manipulated fro these views. Once, a view is created it can be treated like any table. These can have security, abstraction advantages.
+```
+CREATE OR REPLACE VIEW clerk AS
+SELECT empno, ename, job, dname from emp,dept
+WHERE emp.deptno=dept.deptno;
+```
+* Sequence in database object is used to generate numbers for rows in a table.
+```
+CREATE SEQUENCE <Sequence_name>
+[INCREMENT BY <integervalue>] --default is 1
+[START WITH <integervalue>] --default 1 for asc, -1 for dsc
+[MINVALUE <integervalue>/NOMINVALUE]
+[MAXVALUE <integervalue>/NOMAXVALUE]
+[CYCLE/ NOCYCLE];
+
+--Example of a sequence as follow,
+CREATE SEQUENCE Empcode Increment By 2 Start With 100;
+SELECT EmpCode.Nextval From Dual; --CURRVAL for last value returned by NEXTVAL
+```
+* Indexes, way to store & search records in table. Records are retrieved in two ways either by ROWID or full table scan. Maintain uniqueness in database, boosts searching performance.
+* Address field of a index is called ROWID. Internally generated & maintained in binary values. Format of row id, BBBBBBB.RRRR.FFFF
+  * BBBBBBB(7): block number on which the record isstored.
+  * RRRR: unique record number in each data block.
+  * FFFF: unique number given by oracle engine to each data file.
+* Duplicate vs Unique indexes, unique doesn't allow duplicate values for indexed columns. Simple & Composite Indexes exist
+```
+--Index created on single col but duplicate values can be there
+CREATE INDEX index_name  --UNIQUE INDEX, for unique index
+Types of Indexes
+ON table_name(column_name1 |, column_name2);
+--Dropping an index
+DROP INDEX index_name;
+```
+* Too many indexes slows down the DML queries. Index only 10-15% of data. Index cols involved in multi-table join.
+* A comparison b/w bitmap & b-tree index. Also, paritioned index is used to partition table.  
+
+| B-tree Index | Bitmap Index, single index entry uses bitmap to point at rows |
+| --- | --- |
+| Good for high cardinality data | low cardinality |
+| Good for OLTP databases | Good for data warehousing applications |
+| Large amount of space | Little space |
+| Easy update | difficult |
+
+* How good a index is ? selectivity, = unique index values / total number of records.
+
+---
 __Note:__
 * Reference are from book Simplified approach to dbms : Parteek Bhatia Sir
 * Interview Preperation Section will soon be added.
