@@ -33,6 +33,7 @@ These sub-sections are decided on the basis of latest requirements in current So
 - [ ] [Algorithm-Concepts](Algorithm-Concepts/README.md)
 * __System Design__ : Basic OO-design, scalable implementations, design choices. Distributed designs, service-oriented architectures, map-reduce, distributed caching, load balancing.
 - [ ] [Database-Management](Database-Management/README.md)
+- [ ] [Cloud-Computing](Database-Management/CloudComputing.md)
 * __OS__ : All the basics of operating systems with memory management, processes, threads, synchronization, paging, and multithreading as a must.
 - [ ] [Operating-Systems](Operating-Systems/README.md)
 - [ ] [Interview-Questions](Operating-Systems/Interview-Questions/README.md)
@@ -68,5 +69,5 @@ Last steps are to __implement__ & __test__ the final optimized code.
 * New detailed preperation topics will be added for each sub-section.
 * Flash-cards for each sub-section will be added.
 * Url of resources will soon be added with descriptive analysis of topics.
-* Repository is planned to be divided into 2-month prep. and 6-month extensive prep. period.
+* Repository is planned to be shifted to github-pages with jekyll framework for an easy conversion for web-page format to increase readability.
 ---
