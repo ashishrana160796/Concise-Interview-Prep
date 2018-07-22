@@ -34,6 +34,7 @@ These sub-sections are decided on the basis of latest requirements in current So
 * __System Design__ : Basic OO-design, scalable implementations, design choices. Distributed designs, service-oriented architectures, map-reduce, distributed caching, load balancing.
 - [ ] [Database-Management](Database-Management/README.md)
 - [ ] [Cloud-Computing](Database-Management/CloudComputing.md)
+- [ ] [SQL-Cheat-Sheet](Database-Management/SQLCheatSheet.md)
 * __OS__ : All the basics of operating systems with memory management, processes, threads, synchronization, paging, and multithreading as a must.
 - [ ] [Operating-Systems](Operating-Systems/README.md)
 - [ ] [Interview-Questions](Operating-Systems/Interview-Questions/README.md)
