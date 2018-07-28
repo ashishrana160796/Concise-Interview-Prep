@@ -176,9 +176,70 @@ int maxValueInMap = 0;
         }
 ```
 
-* 
+* __Largest Sub-Array With Sum 0__
 
+```
+// iterate over all sub-arrays, for (i=0 to n-1){ for (j=i to n-1){ sum == 0 check} }
+// HashMap approach : O(n) approach
+// Create prefix array sum, if prefix sum repeats or becomes zero, sub-array with zero sum exists.
+static int maxLen(int arr[]) {
+        HashMap<Integer, Integer> hM = new HashMap<Integer, Integer>();
+        int sum = 0;      // Initialize sum of elements
+        int max_len = 0;  // Initialize result
+        for (int i = 0; i < arr.length; i++)
+        {
+            sum += arr[i];
+            if (arr[i] == 0 && max_len == 0)
+                max_len = 1;
+            if (sum == 0)
+                max_len = i+1;
+ 
+            // Look this sum in hash table
+            Integer prev_i = hM.get(sum);
+ 
+            // If this sum is seen before, then update max_len
+            // if required
+            if (prev_i != null)
+               max_len = Math.max(max_len, i-prev_i);
+            else  // Else put this sum in hash table
+               hM.put(sum, i);
+        }
+ 
+        return max_len;
+    }
+
+
+```
 ---
 
+## Arrays, String & Search
+
+* __Kadane's Algorithm__:
+
+```
+Initialize:
+    max_so_far = 0
+    max_ending_here = 0
+Loop for each element of the array
+  (a) max_ending_here = max_ending_here + a[i]
+  (b) if(max_so_far < max_ending_here)
+            max_so_far = max_ending_here
+  (c) if(max_ending_here < 0)
+            max_ending_here = 0
+return max_so_far
+
+DP Solution:
+
+int max_so_far = a[0];
+int curr_max = a[0];
+for (int i = 1; i < size; i++)
+  {
+     curr_max = Math.max(a[i], curr_max+a[i]);
+     max_so_far = Math.max(max_so_far, curr_max);
+  }
+return max_so_far;
+```
 
 
+
+---
