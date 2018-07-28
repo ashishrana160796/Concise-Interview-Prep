@@ -112,4 +112,73 @@ Algorithmically important concepts & questions related to it, plus the variation
       return (josephus(n - 1, k) + k-1) % n + 1;
   ```
 
+* __Recursive Adjacent Duplicates__
+  ```
+    // Schemial Painter's Algorithm
+    public static void check(String str)
+     {
+         if(str.length()<=1)   // length related check
+         {
+             System.out.println(str);
+             return;
+         }
+         String n="";
+         int count=0;
+         for(int i=0;i<str.length();i++)
+         {
+             while(i<str.length()-1 && str.charAt(i)==str.charAt(i+1))
+             {
+                 if(i<str.length()-2 &&str.charAt(i)!=str.charAt(i+2))    // double skip & single skip condition
+                 i+=2;
+                 else
+                 i++;
+                 count++;
+             }
+             // append conditions -- to this problem
+             if(i!=str.length()-1)
+             n=n+str.charAt(i);
+             else
+             {if(i==str.length()-1 && str.charAt(i)!=str.charAt(i-1))
+                 n=n+str.charAt(i);
+             }
+         }
+         if(count>0)
+         check(n);
+         else
+         System.out.println(n);
+     }
+  ```
+
 ---
+
+## HashMap
+
+* __Get maximum value out of a HasMap's value with key in lexicographically sorted order__
+```
+int maxValueInMap = 0;
+        String winner = "";
+        Map.Entry<String,Integer> entry;  // don't declare a direct HashMap object
+        for (entry : map.entrySet())
+        {
+            String key  = entry.getKey();
+            Integer val = entry.getValue();
+            if (val > maxValueInMap)
+            {
+                maxValueInMap = val;
+                winner = key;
+            }
+ 
+            // If there is a tie, pick lexicographically
+            // smaller. 
+            else if (val == maxValueInMap &&
+                winner.compareTo(key) > 0) // winner > key, lexicographically
+                winner = key;
+        }
+```
+
+* 
+
+---
+
+
+
