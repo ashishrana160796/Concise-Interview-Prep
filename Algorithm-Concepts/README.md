@@ -240,6 +240,51 @@ for (int i = 1; i < size; i++)
 return max_so_far;
 ```
 
+---
 
+## Bit Manipulation
 
+* Few instant java functons for string manipulation
+```
+Integer.toBinaryString(i) // to convert to binary string
+Integer.bitCount(i) // count number of ones in Binary String
+Integer.parseInt("1001", 2); // binary, hex, oct string can be converted into base-10 int value
+```
+
+* Find first set bit from right
+```
+// Normal way 
+while ((n & m) == 0)
+    {
+ 
+        // left shift
+        m = m << 1;
+        position++;
+    }
+    return position
+
+// Ninja Way
+return (int)((Math.log10(n & -n)) / Math.log10(2)) + 1; // take two's complement, take log2 & add 1 to get the position
+```
+
+* Total number of set bits in a number
+```
+// Counting Approach O(log(n))
+while (n > 0)
+        {
+            count += n & 1;
+            n >>= 1;
+        }
+        return count
+
+// Sofisticated Algorithm,
+while (n > 0)
+        {
+            n &= (n - 1) ;
+            count++;
+        }
+        return count
+
+// C++, gcc direct count with lookup table it can be done: __builtin_popcount (4)
+```
 ---
