@@ -332,4 +332,10 @@ n=n^num
 --> (int)(Math.log10((m^n)&-(m^n))/Math.log10(2))+1
 ```
 
+* Sparse number, with two consecutive ones counted as non-sparse
+```
+---> (n & (n>>1)) >=1 then return 0, else return 1
+```
+
+* Missing numbers in an array: ` XOR sum of all numbers till n & XOR sum of all in missing array, then XOR the resultant `
 ---
