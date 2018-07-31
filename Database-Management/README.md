@@ -9,7 +9,7 @@ management related concepts to be discussed in detail with practical application
 * Information is collection of data which is business specific and helps in making decisions. Data is not business specific but is atomic level of information.
 * File bases Systems vs Database Systems :
   * Limitations of File based systems :
-      * Repitition of data.
+      * Repetition of data.
       * File format issues.
       * duplicate data & data dependence.
       * seperated & isolated data.
