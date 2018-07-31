@@ -287,4 +287,49 @@ while (n > 0)
 
 // C++, gcc direct count with lookup table it can be done: __builtin_popcount (4)
 ```
+
+* Count total numbers of bits
+```
+// Complexity of best solution is O(k*n), k = 64 bits
+int i=0;
+int ans=0;
+while((1<<i)<=n){  // 2^i less than equal to n
+  boolean k = false; // flip counter
+  int chng = 1<<i;  // 2^i flips to 1
+  for(int j=0;j<n;j++){
+    if(k==true)
+      ans++;
+    if (change == 1) {
+      // When change = 1 flip the bit
+      k = !k; 
+      // again set change to 2^i
+      change = 1 << i; 
+    }
+    else {
+      change--;
+    }
+  }
+  // increment the position
+  i++;
+}
+return ans;
+```
+
+* Toggle bits in given range
+```
+num = (((1<<r)-1)^((1<<(l-1))-1))
+n=n^num
+```
+
+* Kth bit is set or not
+```
+--> (n & (1 << (k - 1))) >= 1  // left shift approach
+--> (n >> (k - 1)) & 1 // right shift approach
+```
+
+* Right-Most different bit b/w two numbers m & n
+```
+--> (int)(Math.log10((m^n)&-(m^n))/Math.log10(2))+1
+```
+
 ---
