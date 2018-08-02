@@ -338,4 +338,57 @@ n=n^num
 ```
 
 * Missing numbers in an array: ` XOR sum of all numbers till n & XOR sum of all in missing array, then XOR the resultant `
+
+---
+
+## Dynamic Programming Problems
+
+* 0/1 Knapsack Problem, Main Logic:
+```
+if(j<w[i])
+{
+  T[i][j]=T[i-1][j]
+}
+else
+{
+  T[i][j]=Max(val[i]+T[i-1][j-w[i]], T[i-1][j])
+}
+```
+
+* Longest common subsequence problem:
+```
+int lcs( char[] X, char[] Y, int m, int n )
+  {
+    if (m == 0 || n == 0)
+      return 0;
+    if (X[m-1] == Y[n-1])
+      return 1 + lcs(X, Y, m-1, n-1);
+    else
+      return max(lcs(X, Y, m, n-1), lcs(X, Y, m-1, n));
+  }
+
+// dp solution algorithm logic
+
+if(m[i]==n[j])
+  T[i][j]=T[i-1][j-1]+1
+else
+  T[i][j]= max(T[i-1][j], T[i][j-1])
+```
+
+* Matrix Multiplication Maximization:
+```
+// Construction of maximum matrix multiplication, bottom up
+// Upper triangular matrix
+T[i][j]=min{T[i][k]+T[k+1][j]+(val[i]first * val[k]second * val[j]second )}
+```
+
+* Subset Sum Problem
+```
+// Main Algorithmic Logic
+if(j<num[i])
+  T[i][j]=T[i-1][j]
+else
+  T[i][j]=T[i-1][j] || T[i-1][j-input[i]]
+```
+
 ---
