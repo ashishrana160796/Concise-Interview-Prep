@@ -210,6 +210,52 @@ static int maxLen(int arr[]) {
 
 
 ```
+
+* Number of pairs of substrings of the string which are anagrams of each other.
+
+```
+  int tcount = 0;
+  HashMap<String, Integer> hm = new HashMap<>();
+  for(int i=0;i<s.length();i++){ 
+    for(int j=i+1;j<=s.length();j++){
+      String str = s.substring(i,j);
+      char[] ch = str.toCharArray();
+      Arrays.sort(ch);
+      str = String.valueOf(ch);
+      if(hm.containsKey(str)) 
+        {
+          int value = hm.get(str);
+          tcount=tcount+value;
+          hm.put(str, value+1);
+        } 
+      else 
+        hm.put(str, 1);
+    }
+  }
+  return tcount;
+```
+
+* Check if one sentance can be constructed with words of another-case sensitivity handle
+
+```
+// add words in respective hashmap's with increment of count policy upon duplicacy.
+boolean b = false;
+  for (Map.Entry<String, Integer> entry : noteMap.entrySet())
+  {
+    if(magazineMap.containsKey(entry.getKey()))
+      {
+         String s = entry.getKey();
+         if(magazineMap.get(s)>=entry.getValue())
+           b = true;
+           else
+           {
+             b = false;
+             break;
+           }
+      }
+return b;
+```
+
 ---
 
 ## Arrays, String & Search
