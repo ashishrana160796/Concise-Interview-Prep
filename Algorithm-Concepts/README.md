@@ -211,7 +211,7 @@ static int maxLen(int arr[]) {
 
 ```
 
-* Number of pairs of substrings of the string which are anagrams of each other.
+* __Number of pairs of substrings of the string which are anagrams of each other.__
 
 ```
   int tcount = 0;
@@ -235,7 +235,7 @@ static int maxLen(int arr[]) {
   return tcount;
 ```
 
-* Check if one sentance can be constructed with words of another-case sensitivity handle
+* __Check if one sentance can be constructed with words of another-case sensitivity handle__
 
 ```
 // add words in respective hashmap's with increment of count policy upon duplicacy.
@@ -254,6 +254,30 @@ boolean b = false;
            }
       }
 return b;
+```
+
+* __Count Geometric triplets in an array, part i<j<k__
+
+```
+long cnt = 0;
+        // map1 is for keeping count of numbers encountered
+        Map<Long, Long> map = new HashMap<>();
+        // map2 is for keeping track of previous encountered numbers,
+        //previous triplet count associated
+        Map<Long, Long> rMap = new HashMap<>();
+        for (long n : arr) {
+            if (n % r == 0) {
+                long pre = n / r;
+                Long cnt2 = rMap.get(pre);
+                // previous value recalled & added
+                if (cnt2 != null) cnt += cnt2;
+                // privous g.m recalled & stored
+                Long cnt1 = map.get(pre);
+                if (cnt1 != null) rMap.put(n, rMap.getOrDefault(n, 0L) + cnt1);
+            }
+            map.put(n, map.getOrDefault(n, 0L) + 1);
+        }
+        return cnt;
 ```
 
 ---
