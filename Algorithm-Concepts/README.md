@@ -462,3 +462,38 @@ else
 ```
 
 ---
+
+## Maths & Puzzles
+
+* __Sieve Of Eratosthenes: Find primes upto 'n' number__
+
+```
+boolean[] numPrime(int max){
+  int[] flag = new int[max+1];
+  int count=0;
+  init(flag)  // set all flags either to 0 or 1
+  int prime = 2;
+  
+  while(prime<=Math.sqrt(max)){
+    crossOff(flag, prime);
+    nextPrime(flag, prime);
+    count++;  // for counting the number of primes
+  }
+  return flag;
+}
+
+void crossOff(boolean[] flag, int prime){
+  // prime number, mulipliers are crossed off.
+  for(int i=prime*prime;i<flag.length;i+=prime)
+    flag[i] = false;
+}
+
+int nextPrime(boolean[] flag, int prime){
+  int next=prime+1;
+  while(next<flag.length && !flag[next])
+    next++;
+  return next;
+}
+
+// Optimize it with using only odd numbers in this array-space.
+```
