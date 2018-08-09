@@ -1,7 +1,5 @@
 # Algorithm Concepts & Data Structures
 
----
-
 Algorithmically important concepts & questions related to it, plus the variations which will be beneficial to remember. Keep such concepts in cache of your brain to solve questions at high speed. As almost all the questions in the company interviews are repeated.  
 
 ---
@@ -327,18 +325,54 @@ for (int i = 0; i < arr.length;) {
 return count;
 ```
 
+* __Left & Right Rotation In An Array__
+
+```
+for(int i=0;i<n;i++)  // b, be new rotated array
+  b[i] = a[((i+n-k)%n)]; // right rotation
+
+for(int i=0;i<n;i++)  // b, be new rotated array
+  b[i] = a[((i+n-k)%n)]; // right rotation
+```
+
+* __Array Manipulation, (a,b,k): add k b/w these indices(included)__
+
+```
+//"difference array": The entry arr[i]=k indicates that arr[i] is exactly k units larger than arr[i-1]
+long[] arr = new long[n];
+
+int lower;
+int upper;
+long sum;
+for(int i=0;i<m;i++){
+    lower=scan.nextInt();
+    upper=scan.nextInt();
+    sum=scan.nextInt();
+    arr[lower-1]+=sum;
+    if(upper<n) arr[upper]-=sum; 
+}
+        
+long max=0;
+long temp=0;
+// Basically, slope like structures are created, upon summation.
+for(int i=0;i<n;i++){
+    temp += arr[i];
+    if(temp> max) max=temp;
+}
+```
+
 ---
 
 ## Bit Manipulation
 
-* Few instant java functons for string manipulation
+* __Few instant java functons for string manipulation__
 ```
 Integer.toBinaryString(i) // to convert to binary string
 Integer.bitCount(i) // count number of ones in Binary String
 Integer.parseInt("1001", 2); // binary, hex, oct string can be converted into base-10 int value
 ```
 
-* Find first set bit from right
+* __Find first set bit from right__
 ```
 // Normal way 
 while ((n & m) == 0)
@@ -354,7 +388,7 @@ while ((n & m) == 0)
 return (int)((Math.log10(n & -n)) / Math.log10(2)) + 1; // take two's complement, take log2 & add 1 to get the position
 ```
 
-* Total number of set bits in a number
+* __Total number of set bits in a number__
 ```
 // Counting Approach O(log(n))
 while (n > 0)
@@ -375,7 +409,7 @@ while (n > 0)
 // C++, gcc direct count with lookup table it can be done: __builtin_popcount (4)
 ```
 
-* Count total numbers of bits
+* __Count total numbers of bits__
 ```
 // Complexity of best solution is O(k*n), k = 64 bits
 int i=0;
@@ -402,35 +436,35 @@ while((1<<i)<=n){  // 2^i less than equal to n
 return ans;
 ```
 
-* Toggle bits in given range
+* __Toggle bits in given range__
 ```
 num = (((1<<r)-1)^((1<<(l-1))-1))
 n=n^num
 ```
 
-* Kth bit is set or not
+* __Kth bit is set or not__
 ```
 --> (n & (1 << (k - 1))) >= 1  // left shift approach
 --> (n >> (k - 1)) & 1 // right shift approach
 ```
 
-* Right-Most different bit b/w two numbers m & n
+* __Right-Most different bit b/w two numbers m & n__
 ```
 --> (int)(Math.log10((m^n)&-(m^n))/Math.log10(2))+1
 ```
 
-* Sparse number, with two consecutive ones counted as non-sparse
+* __Sparse number, with two consecutive ones counted as non-sparse__
 ```
 ---> (n & (n>>1)) >=1 then return 0, else return 1
 ```
 
-* Missing numbers in an array: ` XOR sum of all numbers till n & XOR sum of all in missing array, then XOR the resultant `
+* __Missing numbers in an array:__ ` XOR sum of all numbers till n & XOR sum of all in missing array, then XOR the resultant `
 
 ---
 
 ## Dynamic Programming Problems
 
-* 0/1 Knapsack Problem, Main Logic:
+* __0/1 Knapsack Problem, Main Logic:__
 ```
 if(j<w[i])
 {
@@ -442,7 +476,7 @@ else
 }
 ```
 
-* Longest common subsequence problem:
+* __Longest common subsequence problem:__
 ```
 int lcs( char[] X, char[] Y, int m, int n )
   {
@@ -462,14 +496,14 @@ else
   T[i][j]= max(T[i-1][j], T[i][j-1])
 ```
 
-* Matrix Multiplication Maximization:
+* __Matrix Multiplication Maximization:__
 ```
 // Construction of maximum matrix multiplication, bottom up
 // Upper triangular matrix
 T[i][j]=min{T[i][k]+T[k+1][j]+(val[i]first * val[k]second * val[j]second )}
 ```
 
-* Subset Sum Problem
+* __Subset Sum Problem__
 ```
 // Main Algorithmic Logic
 if(j<num[i])
