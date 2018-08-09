@@ -1,4 +1,4 @@
-# Algorithm Concepts
+# Algorithm Concepts & Data Structures
 
 ---
 
@@ -308,6 +308,23 @@ for (int i = 1; i < size; i++)
      max_so_far = Math.max(max_so_far, curr_max);
   }
 return max_so_far;
+```
+
+* __Minimum Swaps to Sort Array in ascending order, unique elements__
+
+```
+int count = 0;
+for (int i = 0; i < arr.length;) {
+  if (arr[i] == (i + 1) || arr[i] >= arr.length) {
+      i++;
+      continue;
+  }
+  int tmp = arr[i];
+  arr[i] = arr[tmp - 1];
+  arr[tmp - 1] = tmp;
+  count++;
+}    
+return count;
 ```
 
 ---
