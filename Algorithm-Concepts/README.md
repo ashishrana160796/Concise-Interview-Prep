@@ -599,3 +599,86 @@ int nextPrime(boolean[] flag, int prime){
 
 // Optimize it with using only odd numbers in this array-space.
 ```
+
+__Greedy Algorithms__
+
+* __Huffman Coding: Print Coding Values__
+
+```
+class HuffmanNode{
+  int data;
+  char c;  // type of node, internal or regular
+  HuffmanNode l;
+  HuffmanNode r;
+}
+// Comparator interface implementation, for data comparison
+class MyComparator implements Comparator<HuffmanNode> {
+    public int compare(HuffmanNode x, HuffmanNode y)
+    {
+ 
+        return x.data - y.data;  // ascending order comparison
+    }
+}
+public class Huffman{
+public static void printCode(HuffmanNode root, String s) {
+ // leaf node, to be printed only, not the internal ones
+   if (root.left == null && root.right == null && Character.isLetter(root.c)) {
+     // c is the character in the node
+     System.out.println(root.c + ":" + s);
+     return;
+   }
+   printCode(root.left, s + "0");
+   printCode(root.right, s + "1");
+ }
+// main function
+public static void main(String[] args) {
+   Scanner s = new Scanner(System.in);
+   int n = 6;
+   char[] charArray = { 'a', 'b', 'c', 'd', 'e', 'f' };
+   int[] charfreq = { 5, 9, 12, 13, 16, 45 };
+   // makes a min-priority queue(min-heap).
+   PriorityQueue<HuffmanNode> q = new PriorityQueue<HuffmanNode>(n, new MyComparator());
+   for (int i = 0; i < n; i++) {
+     // creating a huffman node object
+     // and adding it to the priority-queue.
+     HuffmanNode hn = new HuffmanNode();
+     hn.c = charArray[i];
+     hn.data = charfreq[i];
+     hn.left = null;
+     hn.right = null;
+     // the huffman node to the queue added.
+     q.add(hn);
+   }
+   // create a root node
+   HuffmanNode root = null;
+   // Here we will extract the two minimum value
+   // from the heap each time until
+   // its size reduces to 1, extract until
+   // all the nodes are extracted.
+    while (q.size() > 1) {
+      // first min extract.
+      HuffmanNode x = q.peek();
+      q.poll();
+      // second min extarct.
+      HuffmanNode y = q.peek();
+      q.poll();
+      // new node f which is equal
+      HuffmanNode f = new HuffmanNode();
+      // to the sum of the frequency of the two nodes
+      // assigning values to the f node.
+      f.data = x.data + y.data;
+      f.c = '-';
+      // first extracted node as left child.
+      f.left = x;
+      // second extracted node as the right child.
+      f.right = y;
+      // marking the f node as the root node.
+      root = f;
+      // add this node to the priority-queue.
+      q.add(f);
+   }
+   // print the codes by traversing the tree
+   printCode(root, "");
+  }
+}
+```
