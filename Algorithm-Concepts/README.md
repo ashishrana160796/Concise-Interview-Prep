@@ -682,3 +682,42 @@ public static void main(String[] args) {
   }
 }
 ```
+
+* __Activity Selection Problem__
+
+```
+greedySelector(int s[], int f[], int n)  // Sorted according to earliest finishing time in activities.
+{
+    int i, j;
+    // The first activity always gets selected
+    i = 0;
+    System.out.print(i+" ");
+    // Consider rest of the activities
+    for (j = 1; j < n; j++)
+    {
+         // If this activity has start time greater than or
+         // equal to the finish time of previously selected
+         // activity, then select it
+         if (s[j] >= f[i])
+         {
+              System.out.print(j+" ");
+              i = j;
+          }
+     }
+    }
+```
+
+* __Fractional Knapsack__
+
+```
+// Summation(x) <= W
+// Summation(b(x/w)), maximize
+for each item i E S do
+  xi <- 0
+  vi <- bi/wi // value per unit
+w<-0
+while w<W do
+  a<-min(wi, W-wi) // W-wi, might cause an overflow
+  xi<-a
+  w<-w+a
+```
