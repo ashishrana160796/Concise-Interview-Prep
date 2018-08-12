@@ -151,6 +151,25 @@ Algorithmically important concepts & questions related to it, plus the variation
 
 ## HashMap
 
+* __Introduction__
+
+```
+alpha(load factor) = n(= number of keys stored in table)/m(= number of possible entries). Ideal alpha would be as large as possible.
+Hashing: Insertion, Deletion & Search in constant time(O(1)). Not efficient in FindMin, FindMax & printing entire table in sorted array.
+Hashing Methods applied on key: Truncation, Folding, Key%N, Squaring, Radix Conversion.
+
+Methods of Hashing:
+
+Seperate Chaining: array's keys points to linked list values to be traversed. Simple collision & overflow handling.
+Open Addressing: Avoids second data struture of linked list. h(x) = (hash(x)+f(i)), collision resolution strategy.
+  Linear Probing: f(i)=i, after collision linear circular increment is done till an empty space is found. Linear Clustering problem, primary clusters reducing performance gets formed.
+                  Successful Searches, average= summation(indices hopped for correct value)/number of values searched
+                  Unsucessful Searches, average= summation(indices hopped for correct value confirmation, that is absent from table)/number of values searched
+  Quadratic Probing: f(i)=i^2, Probe points are relative to original probe points. Secondary clustering problem also exist in this.
+  Double Sharing: f(i)=i*hash2(x), hash2(x) must never evaluate to zero. R - (x mod R) where R is prime < table size.
+                  Use the normal hash function, when collision happens, than use second hash function.
+```
+
 * __Get maximum value out of a HasMap's value with key in lexicographically sorted order__
 ```
 int maxValueInMap = 0;
@@ -600,6 +619,8 @@ int nextPrime(boolean[] flag, int prime){
 // Optimize it with using only odd numbers in this array-space.
 ```
 
+---
+
 __Greedy Algorithms__
 
 * __Huffman Coding: Print Coding Values__
@@ -720,4 +741,66 @@ while w<W do
   a<-min(wi, W-wi) // W-wi, might cause an overflow
   xi<-a
   w<-w+a
+```
+
+---
+
+## BackTracking
+
+* __N-Queens Problem__`
+
+```
+// Two queens are in same diagonal if (i,j), (k,l) satisfies: |j-l|=|i-k|
+// x[] is a global array whose first (k-1) values are set. Stores the column number i in which a queen is placed.
+Algorithm Place(K , i)
+{
+  For j= 1 to k-1 do
+    If ((x[ j ] = i ) 		// two in the same column
+      Or ( Abs ( x [ j ]- i) = Abs ( j- k))) // same diagonal
+    then return false
+  Return true
+}
+// Computing time O(k-1)
+
+Algorithm NQueens( K, n)
+{
+For i= 1 to n do{
+  if place(K ,i) then
+    { x[K] := i
+      If ( k = n ) then //obtained feasible sequence of length n
+        write ( x[1:n]) //print the sequence
+      Else Nqueens(K+1 ,n) //sequence is less than the length so backtrack
+    }
+  }
+}
+```
+
+* __All subsets, with sum S__
+
+```
+// tree like structure for backtracking, left-include & right-exclude, each level represented with a number.
+// DFS like backtracking, with promising & non-promising nodes. Pruned tree with exceeded sum limit can be avoided.
+
+void checknode (node v) {
+node u
+if (promising ( v ))    // promising method checks that v can lead to a solution.
+	if (aSolutionAt( v ))    // aSolutionAt checks whether the solution solves the problem.
+		write the solution
+	else //expand the node
+	  	for ( each child u of v )
+			checknode ( u )
+}
+
+sumOfSubsets ( i, weightSoFar, totalPossibleLeft )    // initial call (0,0,summation(numbers))
+  if (promising ( i ))    //may lead to solution
+    then if ( weightSoFar == S )
+      then print include[ 1 ] to include[ i ]    //found solution
+  	else        //expand the node when weightSoFar < S
+      include [ i + 1 ] = "yes”    //try including
+      sumOfSubsets ( i + 1, weightSoFar + w[i + 1],	totalPossibleLeft - w[i + 1] )
+   	  include [ i + 1 ] = "no”     //try excluding
+  	  sumOfSubsets ( i + 1, weightSoFar , totalPossibleLeft - w[i + 1] )
+
+boolean promising (i )
+1) return ( weightSoFar + totalPossibleLeft >= S)  && ( weightSoFar == S  ||  weightSoFar +  w[i + 1] <= S )
 ```
