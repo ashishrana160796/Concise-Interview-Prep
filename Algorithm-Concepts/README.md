@@ -530,6 +530,14 @@ n=n^num
 
 * __Missing numbers in an array:__ ` XOR sum of all numbers till n & XOR sum of all in missing array, then XOR the resultant `
 
+* __Swap odd and even bits:__
+
+```
+int eb = n&0xAAAAAAAA;
+int ob = n&0x55555555;
+System.out.println((eb>>1)|(ob<<1));
+```
+
 ---
 
 ## Dynamic Programming Problems
