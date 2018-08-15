@@ -7,14 +7,14 @@ management related concepts to be discussed in detail with practical application
 ## Introduction & Basics
 
 * Information is collection of data which is business specific and helps in making decisions. Data is not business specific but is atomic level of information.
-* File bases Systems vs Database Systems :
+* File based Systems vs Database Systems :
   * Limitations of File based systems :
       * Repetition of data.
       * File format issues.
       * duplicate data & data dependence.
       * seperated & isolated data.
   * Advantages of DBMS :
-    * Controlling Redundancy, Integrity. Inconsistency can be avoided.
+    * Controlling Redundancy, Integrity, Inconsistency can be avoided.
     * backup & recovery.
     * Standard enforcement, solving unauthorized access.
     * Enterprise level solutions provide.
@@ -47,7 +47,7 @@ management related concepts to be discussed in detail with practical application
 * Strong & Weak entity sets, loan-payment relation where payment number won't exist w/o loan. Entity set doesn't have sufficient attribute to form a primary key is called weak entity set.
 * Generalization( bottom-up ) vs specification( top-down ), entities sharing common attributes can be generalized into on higher supertype. Sub-types are dependent. It is denoted with triangle 'IS A' attribute. In specification from higher subsets lower ones are formed in top-down manner.
   * Constraints on these can be user-defined or attribute defined.
-* Aggregation : One limitaion is cannot define relation amongst relation. Aggregating one relation with entities with another relation and entities. example : Loan officer for customer loan pair.
+* __Aggregation__: One limitation of ER-Diagrams is that, it cannot define relation amongst relation. Aggregating one relation with entities with another relation and entities. example : Loan officer for customer loan pair.
 * __E-R Diagram to table__ : A generic approach that is applicable.
   * Unique row attribute becomes primary key.
   * Composite attributes are flattened out.
@@ -55,13 +55,13 @@ management related concepts to be discussed in detail with practical application
   * Weak entity set becomes seperate table & involves primary key of identifying strong entity set.
   * In many-to-many relation represent it with a primary keys of both the entity sets in a seperate table.
   * Many-to-one relation instead of creating new table, add primary key of many branch to one side. example, in account branch relation copy branch to account side.
-  * In specification involve primay keys from higher level onto lower levels of tables.
+  * In specification, involve primay keys from higher level onto lower levels of tables.
   * Consider a case of account generalized from saving & current accounts. There are two cases either maintain three tables of account, saving account, current account or maintain the later two. But, in first one balance attribute joining is required for two tables, but in second approach a redundant balance field is required for both tables.
-  * To represent a aggregated relation, create a table of aggregated relation's primary key and primary key of associated entity.
+  * To represent an aggregated relation, create a table of aggregated relation's primary key and primary key of associated entity.
 * __Keys :__ Different types of keys in relation.
   * Super Key : uniqueness property is there.
   * Candidate Key : uniqueness & irreducibility.
-  * Primary Key : key chosen for unique identification of records. Can't contain null. 
+  * Primary Key : key chosen for unique identification of records. Can't contain null. It is Integral Integrity.
   * Alternate Key : are candidate keys not chosen as primary keys.
   * Artificial Key : created by DBA to increase efficiency by combining multiple columns create new unique key.
   * Foreign Key : attribute that refer to primary of another table. target table is the one containing reference to target tuple. Matter of integrity of foreign keys is referred to as Referential Integrity.
@@ -90,7 +90,7 @@ management related concepts to be discussed in detail with practical application
     * __BCNF__ makes no reference to 1NF & 2NF, but states that every determinant single or composite is a candidate key. A relation in 3NF is always in BCNF but not the opposite. __Overlapping candidate keys are main problem__ tha BCNF handles.
     * __4NF__, If already in 3NF or BCNF & no Multi value dependency. In MVD an attribute can have multivalued fact about another. A relation R having A,B, and C, as attributes can be non loss- decomposed into two projections R1(A,B) and R2(A,C) if and only ifthe MVD A->->B|C hold in R.
     * __5NF__, Already in 4NF and it cannot be non-loss decomposed. A table T is in 5NF if every join dependency(lossless reconstruction) in T is a consequence only of the candidate  keys in T.
-* Denormalization : helps in increasing the efficiency of data by keeping redundant data to avoid extra join overload.
+* __Denormalization__ : helps in increasing the efficiency of data by keeping redundant data to avoid extra join overload.
   * One way, Logical design is kept normalized, but keep redundant views to optimize the query like Indexed or materialized views. View represent information & queries are optimized. Denormalized databases need to be synchronized.
   * denormalization of data should be done after certain level of normalization. Denormalization is not equivalent to non-normalized data.
   * OLTP prefers normalized databases for consistency & OLAP prefers denormalized ones.
@@ -143,14 +143,14 @@ management related concepts to be discussed in detail with practical application
   * Rename (ρ) : Rename is a unary operation used for renaming attributes of a relation. ρ (a/b)R will rename the attribute ‘b’ of relation by ‘a’.
   * Cross Product (X) : Cross product between two relations let say A and B, so cross product between A X B will results all the attributes of A followed by each attribute of B. Each record of A will pairs with every record of B.
   * Natural Join (⋈) : Natural join is a binary operator. Natural join between two or more relations will result set of all combination of tuples where they have equal common attribute.
-  * Conditional Join : Conditional join works similar to natural join. In natural join, by default condition is equal between common attribute while in conditional join we can specify the any condition such as greater than, less than, not equal
+  * Conditional Join : Conditional join works similar to natural join. In natural join, by default condition is equal between common attribute while in conditional join we can specify the any condition such as greater than, less than, not equal.
  
 ---
 
 ## SQL Basics
 
 * __Create table commands__ :
-  * Table names are note case-sensitive, characters in it are A-Z, a-z, 0-9, _(underscore),$ and #. Numbers of columns in a table can range from 1 to 1000. 
+  * Table names are not case-sensitive, characters in it are A-Z, a-z, 0-9, _(underscore),$ and #. Numbers of columns in a table can range from 1 to 1000. 
   * Create table command. Also, varchar is variable length character & char is fixed length command.
   ```
   Create table student
@@ -203,7 +203,7 @@ ALTER TABLE <table_name>
 * __Truncate Table__ : Delete all rows from a table, TRUNCATE TABLE Customer or DELETE FROM Customer
 ```
 Difference between TRUNCATE & DELETE :
-With Truncate data can't ne recovered. Truncate is DDL, DELETE is DML. Truncate releases the memory but DELETE doesn't.
+With TRUNCATE data can't ne recovered. TRUNCATE is DDL, DELETE is DML. TRUNCATE releases the memory but DELETE doesn't.
 ```
 
 ---
@@ -231,7 +231,7 @@ SELECT EmpCode.Nextval From Dual; --CURRVAL for last value returned by NEXTVAL
 ```
 * Indexes, way to store & search records in table. Records are retrieved in two ways either by ROWID or full table scan. Maintain uniqueness in database, boosts searching performance.
 * Address field of a index is called ROWID. Internally generated & maintained in binary values. Format of row id, BBBBBBB.RRRR.FFFF
-  * BBBBBBB(7): block number on which the record isstored.
+  * BBBBBBB(7): block number on which the record is stored.
   * RRRR: unique record number in each data block.
   * FFFF: unique number given by oracle engine to each data file.
 * Duplicate vs Unique indexes, unique doesn't allow duplicate values for indexed columns. Simple & Composite Indexes exist
@@ -251,11 +251,11 @@ DROP INDEX index_name;
 | Good for high cardinality data | low cardinality |
 | Good for OLTP databases | Good for data warehousing applications |
 | Large amount of space | Little space |
-| Easy update | difficult |
+| Easy update | Difficult Update |
 
 * How good a index is ? selectivity, = unique index values / total number of records.
 
 ---
 __Note:__
-* Reference are from book Simplified approach to dbms : Parteek Bhatia Sir
+* Reference are from book Simplified approach to dbms : Parteek Bhatia Sir & Other Sites/Books too.
 * Interview Preperation Section will soon be added.
