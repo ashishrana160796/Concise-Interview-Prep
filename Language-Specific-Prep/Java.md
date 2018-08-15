@@ -76,3 +76,89 @@ directly pass it to the method.
 A static inner class is a nested class which is a static member of the outer class.
 It can be accessed without instantiating the outer class, using other static members.
 ```
+
+* __Checked Exceptions__
+
+```
+Types of Exceptions
+  Checked Exceptions: Occurs at compile time. Can't be ignored at compile time.
+  Unchecked Exceptions: Occurs at run time, executing the code.
+  Errors: beyond the control of programmer, stack overflow for example. Can't do anything about it.
+    Examples: IllegalArgumentException, IllegalStateException.
+  
+Exception Hierarchy:
+All exception classes are subtypes of the java.lang.Exception class.
+The exception class is a subclass of the Throwable class.
+Other than the exception class there is another subclass called Error which is derived from the Throwable class.
+
+* getMessage(), printStackTrace(), Throwable getClause() can be used to get messages about the class.
+* Concept of multiple catch blocks & their linear order of execution until the first one is matched.
+    Catching multiple exceptions with concatenate operand can also be done.
+* If a method does not handle a checked exception, the method must declare it using the throws keyword. The throws keyword appears at the end of a method's signature. Mutiple exception throws can be declared in the method signature also.
+* Finally block always executes it can be used for performing clean ups.
+* try-with-resources, automatically closes resources, is an example of automatic resource management. In case of multiple resources seperate them with semi-colons.
+  AutoClosable interface is needed to be implemented. Resources within this try block are implicitly final & closes in reverse order.
+ * All exception throwing classes must be child of Throwable. Hence, they must extend Exception.
+```
+
+* __Packages__
+
+```
+Package statement is first line in code. & only one package name should be there. Upon no decleration it placed in current
+default package.
+
+-d argument compilation of javac creates a package folder in specified destination.
+javac -d Destination file.java
+java packageName.ClassName, can be used to compile the classes.
+```
+---
+
+## Java OOPS Concept
+
+* __Inheritance__
+
+```
+* A subclass inherits all the members (fields, methods, and nested classes) from superclass.
+  Constructors are not members, but the constructor of the superclass can be invoked from subclass.
+
+* super keyword differentiate members of superclass & invoke superclass constructors.
+  
+* Generally inheritance relation is IS-A relation type but other types are also there.
+    Association: Relation b/w two classes. Can be one-to-one, one-to-many, many-to-one, many-to-many.
+      Composition: PART-OF relation, depedency amongst each other, no individual existance.
+      Aggregation: HAS-A relation, unidirectional relation & both entries survive individually.
+* No, multiple inheritance to avoid any virtual function type analysis like C++. Multiple interfaces can be implemented.
+```
+
+* __Overriding__
+
+```
+Example:
+
+  Animal a = new Animal();
+  Animal b = new Lion();
+  a.print();   
+  b.print();   
+  
+Output:
+  Animals
+  Lion
+
+In compile time, the check is made on the reference type.
+However, in the runtime, JVM figures out the object type and would run the method that belongs to that particular object.
+Reference type of superclass won't be able to access methods from subclass.
+  Also, access level of subclass can't be more restrictive. 
+  Final method can't be overridden. Static methods also but can be re-declared.
+  Overidding method must also throw narrow scope exceptions as compared to superclass.
+```
+
+* __Polymorphism__
+
+```
+The way to access is of reference type, once declared can't be changed. Multiple IS-A test passing instances will
+show polymorphism.
+
+Virtual method invocation: 
+An overridden method is invoked at run time, no matter what data type the reference is that was used
+in the source code at compile time.
+```
