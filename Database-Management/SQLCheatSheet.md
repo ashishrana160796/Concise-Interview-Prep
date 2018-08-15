@@ -137,7 +137,7 @@ expr2 is the target value for converting the null.
 NVL2 (expr1, expr2, expr3)
 expr1 is the source value or expression that may contain null
 expr2 is the value returned if expr1 is not null
-expr3 is the value returned if expr2 is null
+expr3 is the value returned if expr1 is null
 
 DECODE(col|expression, search1, result1 -- Like if-else
  [, search2, result2,...,][, default])  -- If the default value is omitted, a null value is returned 
