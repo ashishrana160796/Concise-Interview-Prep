@@ -13,10 +13,8 @@ application software.
 PaaS : Rather than offering software that is delivered over the web,
 PaaS offers a platform for the creation of software delivered over the web. For multiple development team across different regions.
 IaaS : It is delivering cloud computing infrastructure as an on demand service.
-
-Hardware
 ```
-* Cloudsim is extensible cloud simulation toolkit for simulation of CLoud Environments. It's important features are,
+* Cloudsim is extensible cloud simulation toolkit for simulation of Cloud Environments. It's important features are,
   * Allows creation of one or more nodes of Data centers, jobs & their mappings to VMs.
   * Simulation on multiple data centers to enable study on federation.
   * automatic scaling of applications.  
@@ -128,6 +126,7 @@ the Mapper instances on a given node. Output from the Combiner is then sent to t
 
 ## Virtualization
 
+* A hypervisor is a software, firmware or hardware that creates and runs virtual machines.
 * Share HW among users, sandbox applications & decouple application & hardware for HW upgrades.
 * Virtualization is process which allows multiple OS configuration & executions. 
 * Hypervisor provides support for running multiple operating systems concurrently in virtual servers created within a physical server.
