@@ -1,6 +1,59 @@
-## Puzzles
+# Puzzles
 
-### Physics Section 
+## Geometry
+
+### Problems
+
+* Consider a rectangular cake with a rectangular section (of any size or orientation) removed from it. Is it possible to divide the cake exactly in half with only one cut ?
+* Break a cholocate into single pieces which are integration of nxm pieces.
+* With 3 toothpicks a equilateral triangle can be created. Need to add three more equilateral triangles, same size.
+* Disk is painted half black & white. Rotated with constant speed, determining the direction of rotation. Minimum numbers of camera required ?
+* Six different colors that you can paint each side of the cube. How many different cubes can you make? Different rotated alignments doesn't count.
+* 3 Ants at 3 corners, What is the probability that they don't collide ?
+* 12 balls, 1-defective ball, two way balance. How many turns required to find which one is defective ?
+* 8 balls, 1-defective ball, two way balance. How many turns required to find which one is defective ?
+* 4 cats at 4 corners, each chasing one another in such a way that they keep on changing direction towards another cat. Speed is constant, at what time they will catch one another ? 
+* You’ve got someone working for you for seven days and a gold bar to pay him. The gold bar is segmented into seven connected pieces. You must give them a piece of gold at the end of every day. What are the fewest number of cuts to the bar of gold that will allow you to pay him 1/7th each day?
+
+### Solutions
+
+* Line cutting a rectangle in half passes through its center. A line passing through the center of two rectangles will divide the rectangle in two different parts.
+* n*m-1 (Sufficient number of pieces).
+* A pyramid structure like tetrahedron is the solution.
+* Take one camera, rotate it with disk. If color of strips will change in both direction. But, in while in rotating in opposite direction to disk it will happen way faster.
+* Fix top & bottom color-5 options. 4 sides left, (4-1)!=6, circular arragement. Hence, 5*6=30.
+* Each ant can go in 2 directions. Therefore, 2^3 possibilites. Hence, 2(all clock or anti-clockwise)/8 not colliding.
+* 3 turns, first divide into two->heavior side have the defective ball. this six ball group divided into two->heavior side with defective ball. Weigh two balls if equal then third one kept out is heavior one. Otherwise, any of the two is heavior one.
+* 2 turns. Divide into groups of 3,3,2 & than compare groups of 3,3. Rest of steps are simple.
+* Each dog moves perpendicular to another dog. Realtive speed of the dog1 (v1), w.r.t dog 2, it changes perpendicularly. T = l(side)/v(dog).
+* Make 2 cuts such that bar is divided into 1/7, 2/7 & 3/7 as pieces. Analysis for complete week can be done. Like, Day 3: You: 4, Worker: 1 and 2 &  Day 5: You: 2, Worker: 1 and 4.
+
+Referenced Site : First 10 Problems & Solutions are taken from [interviewbit](https://www.interviewbit.com/puzzles/) from where these puzzles can be solved.
+
+---
+
+## Games
+
+### Problems
+
+* Two player game, takes turn placing coin on a table having unspecified diameter. Which Player has stratergy to win ?
+* 3-switches in OFF position are there. When upstairs, you cannot access the switches. What is the minimum number of times you need to go upstairs to determine the switch for each bulb?
+* Alice & Bob in seperate island with Alice having medicine and Bob needing them. Eve can only transport it via a boat but will steal anything that is inside the chest when open. Alice & Bob have locks & keys. Minimum number of trips needed for delivering. boat going from Alice to Bob or Bob to Alice counts as 1 trip.  
+* N number of times fliping is allowed. Can these be divided into 2 piles coins with equal number of heads up.
+
+### Solutions
+
+* Player 1, as except placing coin at center, every coin placed is having counter point in table for a given chance.
+* Switch One bulb on for quite some time. Then turn it off, & then switch another one ON. The 'ON' bulb is for switch 2, for switch 1 'OFF' & warm bulb & for switch 2 'OFF' & cold bulb is there.
+* Multiple locks can be added to chest(Hint).  
+  Trip 1: medicine in chest & lock it, Alice. Trip 2: Locked by Bob, sent to Alice. Trip 3: lock removed by Alice, & sent to Bob. 
+* Divide into two groups first. Keep on tossing one group until it becomes equal to second one.
+
+Referenced Site : First Four Problems & Solutions are taken from [interviewbit](https://www.interviewbit.com/puzzles/) from where these puzzles can be solved.
+
+---
+
+## Physics Section 
 
 In this section top 10 Martin Gardner Physics Stumper are asked & Solved in the end in reference to following [link](http://www.martin-gardner.org/Top10MGPhysics.html).  
 This page contains only questions. These problems can be tried all at once in start time. This Section contain solution approaches to it.
