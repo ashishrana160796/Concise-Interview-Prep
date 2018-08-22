@@ -73,3 +73,64 @@ cat file > file1, Output redirection to another file & '>>' appending to given f
 
 cat < file1, is used as input & output is displayed in terminal.
 ```
+
+* __cut command:__ command for cutting sections from each line of files. Cut parts of a line by byte(-b) position, character(-c), as some character might contain more than one byte and delimiter(-d).
+
+```
+echo 'baz' | cut -b 2, Output: a
+echo 'baz' | cut -b 1-2, Output: ba
+echo 'baz' | cut -b 1,3, Output: bz
+
+cut -d ',' -f 1 names.csv  # -d specifies cut along with ',' and f is for conjunction specification. 
+```
+
+* __grep command:__ searches input files for lines containing a match to a given pattern list.
+
+```
+Basic Regex for grep:
+  . means "any character".
+  * means "any number of this".
+  .* therefore means an arbitrary string of arbitrary length.
+  ^ indicates the beginning of the string.
+  $ indicates the end of the string.
+
+cat dict/words | grep "Eng.*" # All words starting with Eng
+cat dict/words | grep ".*ant?" # All words starting with ant
+cat dict/words | grep "q."  | grep -v "qu" # All patterns which starts with q and doesn’t follow by u
+
+Recursively search for a keyword and also get filename using -H (filename), -R (recursive), -i (case-insensitive) flag 
+grep -HRi "json" * # seaches for keyword & also gives filename
+```
+
+* __Piping:__ send the output of one program to another program for further processing.
+
+```
+for i in {1..30}; do echo $i; done | cut -c 2 | sort | uniq
+# this will print numbers from 0 to 9 in sorted manner after uniq's execution
+```
+
+* __Sort & Uniq command: __
+
+```
+Sorting alphabetically ( Flag -k used to select field for sorting)
+cat words.txt | sort -k 2
+
+Filer out unique lines
+Select unique lines along with their count using -c (count) flag
+cat nums.txt | uniq -c # also prints occurance of each value
+```
+
+* __Head, Tail and Tr command:__
+
+```
+head & tail: Head and tail are used to print n top or bottom lines respectively.
+
+# Get lines from 345 to 360
+cat dict/words | head -360 | tail -15 
+
+# tr: Replacing or removing specific characters from the input.
+cat data.csv | tr '[a-z][A-Z]' '[A-Z][a-z]'  # Reverse the case
+cat data.csv | tr '[0-9]' 'x' # Replace digits with 'x' 
+cat data.csv | tr -s '[0-9A-Za-z]' # Remove consecutive duplicate alphanumerics using -s (squash) flag
+cat data.csv | tr -d '[0-9]' # Remove all digits using -d (delete) flag
+```
