@@ -1,5 +1,38 @@
 # Puzzles
 
+## Logical Puzzles
+
+### Problems
+
+* [21-wire puzzle, How many trips required to figure mapping b/w 21 wires & its labels](https://github.com/sharkdp/great-puzzles/blob/master/puzzles/21-wires/puzzle.md)
+* [Two Pills Each Day Puzzle](https://www.interviewbit.com/problems/two-pills-each-day/)
+* [Good Processor Problem](https://www.interviewbit.com/problems/good-processor/)
+* [Genie & Magical Hats Problem](https://www.interviewbit.com/problems/genie-and-hats/)
+* [Two Numbers Sum & Product Problem](https://www.interviewbit.com/problems/two-numbers/)
+* [The Tribe Problem](https://www.interviewbit.com/problems/the-tribe/)
+* [Daughters ages](https://www.interviewbit.com/problems/daughters-ages/)
+* [Jelly Bean Jars](https://www.interviewbit.com/problems/jelly-beans-jars/)
+
+### Solution
+
+* [Well, Explained Solution](https://github.com/sharkdp/great-puzzles/blob/master/puzzles/21-wires/solution.md)
+* Add one more pill of type A, & then cut 4 pills to 8 halfs and consume one-half today, than other half tommorow.
+* [Well qurated solution](https://everything2.com/title/Good+and+bad+processors+solution)
+* C days. As for c=1, person will see no one has the hat. Hence, he is having one.
+  c=2, first night no one will go. Then they will realize 1 hat on other guy & one is with him. And so on for other days.
+* First Statment: sum>2, Second Statement: number is not prime (Inferences by individual analysis).
+  When combined minimum combination of (2,2) comes as (1,q) are eliminated by P.
+* First Person(Truth Tribe) -> 2nd person, will say Lie Tribe -> 3rd person is truthful
+  Second Person(Lie Tribe, will say truth tribe) ->  2nd person, will say Lie Tribe -> 3rd person is again truthful.
+* Consider following equations first, 3 * 3 * 8 = 72 then summation,  
+  2 + 6 + 6 = 14
+  3 + 3 + 8 = 14, rest of the sums are unique for all possible combinations. Hence, second one as only oldest girl is there only.
+* Trick is every jar is mislabelled. Hence, pick the one with label mixed on it as that jar will contain some kind of jelly in pure amount. From, that jelly type in mind combined with information of mislabelled jars. All jars can be found out about. Hence, one jelly from mixed jar labelled is needed to be picked.
+
+Referenced Site : First 8 Problems & Solutions are taken from [interviewbit](https://www.interviewbit.com/puzzles/) from where these puzzles can be solved.
+
+---
+
 ## Geometry
 
 ### Problems
