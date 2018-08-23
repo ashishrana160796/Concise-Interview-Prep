@@ -134,3 +134,140 @@ cat data.csv | tr '[0-9]' 'x' # Replace digits with 'x'
 cat data.csv | tr -s '[0-9A-Za-z]' # Remove consecutive duplicate alphanumerics using -s (squash) flag
 cat data.csv | tr -d '[0-9]' # Remove all digits using -d (delete) flag
 ```
+
+---
+
+### Shell Scripting Begin
+
+It allows users to interact with Linux systems by writing executable shell commands in simple file.
+
+```
+1. A bash script which takes a string as input, save it as test.sh:
+echo "hello $1" # $1 is the first argument given to the script
+
+
+2. Conditional statements: If-else example
+
+num=5
+if [ $num -lt 0 ]; then
+    echo "negative";
+elif [ $num -lt 10 ]; then
+    echo "less than 10";
+else
+    echo "equal or greater than 10";
+fi
+
+
+3. Loops, repititive tasks
+
+for loop:
+
+for i in {5..10};
+do
+	echo $i;
+done
+
+# Printing all the directories
+
+for i in * 
+do
+  echo "Looping ... i is set to $i"
+done
+
+---
+while loop:
+
+i=1
+while [ $i -le 20 ]
+do
+	echo "$i"
+	i=$(($i+1))
+done
+
+while :
+do
+    echo "Enter some exit condition, \: always evaluate to true"
+done    
+
+while read f, can be used to implement switch case.
+    
+    
+* Important Point to Remember
+
+1. VAR=value works; VAR = value doesn't work. In the first case, the shell sees the "=" symbol and treats
+the command as a variable assignment. In the second case, the shell assumes that VAR must be a command
+and tries to execute it.
+
+2. All variable are stored as strings, depending on routine, they can be treated like anything.
+x="hello"
+expr $x + 1
+expr: non-numeric argument
+
+3. Special characters must be properly escaped to avoid interpretation by the shell. 
+
+4. 'export' the variable for it to be inherited by another program, if any uninitialized variable is
+there otherwise an empty output will be there. 
+
+5. * v/s ls: key differences '*' can be appended into command as augment to path where as ls itself is a command
+& can't be appended.
+
+6. ", $, `, and \ are interpreted by the shell in standard terms instead of "*" star operator in double quotes
+getting interpreted as star to be printed. So, first mentioned characters must accompany with a '\' backslash
+to work fine.
+
+7. "[" test is more frequently called as [. [ is a symbolic link to test. 
+Common Mistake:
+if [$foo = "bar" ], gets interpreted as -> if test$foo = "bar" ] , which won't work. Put spaces b/w all operators.
+if [ $foo = "bar" ]  # Also, single "=", "==", "!=" should be used for strings, or "-eq" for integers.
+ -lt, -gt, -le and -ge comparisons are only designed for integers, and do not work on strings.
+
+8. -a, -e (both meaning "file exists"), -S (file is a Socket), -nt (file is newer than), -ot (file is older than),
+-ef (paths refer to the same file) and -O (file is owned my user), are not available in the
+traditional Bourne shell (eg, /bin/sh on Solaris, AIX, HPUX, etc). 
+
+---
+
+Functions, recursive function example
+
+factorial() {
+  if [ "$1" -gt "1" ]; then
+    i=`expr $1 - 1`
+    j=`factorial $i`
+    k=`expr $1 \* $j`
+    echo $k
+  else
+    echo 1
+  fi
+}
+
+while :
+do
+  echo "Enter a number:"
+  read x
+  factorial $x
+done
+
+```
+
+Extra case-statment code [refereced](https://www.shellscript.sh/case.html)
+
+```
+while :
+do
+  read INPUT_STRING
+  case $INPUT_STRING in
+	hello)
+		echo "Hello yourself!"
+		;;
+	bye)
+		echo "See you again!"
+		break
+		;;
+	*)
+		echo "Sorry, I don't understand"
+		;;
+  esac
+done
+```
+
+* [Quick Reference of commands](https://www.shellscript.sh/quickref.html)
