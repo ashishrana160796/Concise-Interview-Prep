@@ -37,6 +37,7 @@ classname (const classname &obj) {
 Friend functions are not member functions. Right to access all private and protected members of the class.
 Scope operator is not required for it while defining.
 
+
 For small methods place a keyword 'inline' before the function & the code will get inlined to the value.
 
 Pointer to an object of a class. -> is used for accessing the member functions.
@@ -44,5 +45,7 @@ Also, foo->bar() is the same as (*foo).bar(). In this brackets are required as '
 
 Static Member Functions, becomes independent of class. Also, can access only static members of class or any other method outside the
 class. They don't access to this pointer of the class.
+
+Virtual function cannot be static or global. But you can declare virtual function to be a friend to another class.
 
 ```
